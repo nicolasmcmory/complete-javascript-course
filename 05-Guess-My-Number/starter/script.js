@@ -47,7 +47,7 @@ class Game {
 
   // Decrement current score as we go along
   setCurrentScore() {
-    this.DOM_ELEMENTS.score.innerHTML = --this.currentScore;
+    this.DOM_ELEMENTS.score.textContent = --this.currentScore;
 
     return this.currentScore;
   }
@@ -56,22 +56,22 @@ class Game {
     if (this.currentScore >= this.highScore) {
       this.highScore = this.currentScore;
     }
-    this.DOM_ELEMENTS.highScore.innerHTML = this.highScore;
+    this.DOM_ELEMENTS.highScore.textContent = this.highScore;
   }
 
   checkAnswer() {
     // Win
     if (this.userNumber === this.secretNumber) {
       // Show secret number
-      this.DOM_ELEMENTS.number.innerHTML = this.currentScore;
-      this.DOM_ELEMENTS.message.innerHTML = 'Correct number!';
+      this.DOM_ELEMENTS.number.textContent = this.currentScore;
+      this.DOM_ELEMENTS.message.textContent = 'Correct number!';
       this.DOM_ELEMENTS.body.style.backgroundColor = '#60b347';
     } else if (this.userNumber > this.secretNumber) {
       // Provide clue
-      this.DOM_ELEMENTS.message.innerHTML = 'Too high!';
+      this.DOM_ELEMENTS.message.textContent = 'Too high!';
     } else {
       // Provide clue
-      this.DOM_ELEMENTS.message.innerHTML = 'Too low!';
+      this.DOM_ELEMENTS.message.textContent = 'Too low!';
     }
 
     this.setCurrentScore();
@@ -81,9 +81,9 @@ class Game {
     this.DOM_ELEMENTS.body.style.backgroundColor = '#222';
     this.updateHighScore();
     this.currentScore = this.STARTING_SCORE;
-    this.DOM_ELEMENTS.score.innerHTML = this.STARTING_SCORE;
-    this.DOM_ELEMENTS.message.innerHTML = this.STARTING_MESSAGE;
-    this.DOM_ELEMENTS.number.innerHTML = this.STARTING_NUMBER;
+    this.DOM_ELEMENTS.score.textContent = this.STARTING_SCORE;
+    this.DOM_ELEMENTS.message.textContent = this.STARTING_MESSAGE;
+    this.DOM_ELEMENTS.number.textContent = this.STARTING_NUMBER;
     this.secretNumber = Game.generateSecretNumber();
     Game.print(this.secretNumber);
   }
