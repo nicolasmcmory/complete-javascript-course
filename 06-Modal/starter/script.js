@@ -47,6 +47,7 @@ class Modal {
     // Add hidden class
     this.modal.classList.add('hidden');
     this.overlay.classList.add('hidden');
+    document.addEventListener('keydown')
   }
 }
 
