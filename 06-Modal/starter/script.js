@@ -12,10 +12,22 @@ class Modal {
     this.modalWindowHandler();
   }
 
+  static print(text) {
+    console.log(text);
+  }
+
   modalWindowHandler() {
     // Arrow functions do not have their own this; they inherit it from the surrounding scope, so you can use this directly inside them.
-    this.closeModalWindow.addEventListener('click', () => this.hideModal());
-    document.addEventListener('', () => this.hideModal());
+    this.closeModalWindow.addEventListener('click', () => {
+      const e_string = 'click';
+      this.hideModal(e_string);
+    });
+    document.addEventListener('keydown', e => {
+      // Type conversion and preprocessing for comparison
+      const eString = e.key.toString().toLowerCase();
+      Modal.print(eString);
+      this.hideModal(eString);
+    });
   }
 
   modalButtonHandler() {
@@ -26,10 +38,6 @@ class Modal {
         self.showModal();
       });
     });
-  }
-
-  static print(text) {
-    console.log(text);
   }
 
   showModal() {
@@ -43,11 +51,14 @@ class Modal {
     this.overlay.classList.remove('hidden');
   }
 
-  hideModal() {
+  hideModal(e) {
     // Add hidden class
-    this.modal.classList.add('hidden');
-    this.overlay.classList.add('hidden');
-    document.addEventListener('keydown')
+    if (!this.modal.classList.contains('hidden')) {
+      if (e === 'escape' || e === 'click') {
+        this.modal.classList.add('hidden');
+        this.overlay.classList.add('hidden');
+      }
+    }
   }
 }
 
