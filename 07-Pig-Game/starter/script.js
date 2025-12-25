@@ -34,6 +34,7 @@ class Game {
     };
     // Start with player 1 by default
     this.currentPlayer = this.p1;
+    this.gameStatus = true;
   }
 
   // Class utility methods
@@ -136,6 +137,7 @@ class Game {
     const p2 = this.p2;
 
     // Resetting players
+    this.gameStatus = true;
     this.resetPlayer(p1, p1.no);
     this.resetPlayer(p2, p2.no);
     this.removeDisplayPlayer(p1, 'player--active');
@@ -157,51 +159,53 @@ class Game {
   displayWinner(currentPlayer) {
     this.addDisplayPlayer(currentPlayer, 'player--winner');
     Game.prtStr(`${this.currentPlayer.no} wins!`);
+    this.gameStatus = false;
     return currentPlayer;
   }
 
   // Roll the dice
   handleRollDice() {
     let currentPlayer = this.currentPlayer;
-    this.addDisplayPlayer(currentPlayer, 'player--active');
+    if (this.gameStatus) {
+      this.addDisplayPlayer(currentPlayer, 'player--active');
 
-    // Get dice roll value
-    this.diceNo = Game.rollDice();
+      // Get dice roll value
+      this.diceNo = Game.rollDice();
 
-    // Update current dice total for current player and handle outcome
-    // Roll = 1, reset current total and switch players
-    if (this.diceNo === 1) {
-      // Reseting current player current dice total to 0
-      return (currentPlayer = this.switchPlayer(currentPlayer));
+      // Update current dice total for current player and handle outcome
+      // Roll = 1, reset current total and switch players
+      if (this.diceNo === 1) {
+        // Reseting current player current dice total to 0
+        return (currentPlayer = this.switchPlayer(currentPlayer));
+      }
+      // Add up the dice rolls for current player
+      else {
+        currentPlayer.current += this.diceNo;
+        this.updateDisplayOnRollOrHold(currentPlayer);
+      }
+
+      // Log info to console
+      Game.prtStr(
+        `Player no: ${currentPlayer.no}\nDice roll:${this.diceNo}\nCurrent total: ${currentPlayer.current}`
+      );
     }
-    // Add up the dice rolls for current player
-    else {
-      currentPlayer.current += this.diceNo;
-      this.updateDisplayOnRollOrHold(currentPlayer);
-    }
-
-    // Log info to console
-    Game.prtStr(
-      `Player no: ${currentPlayer.no}\nDice roll:${this.diceNo}\nCurrent total: ${currentPlayer.current}`
-    );
-
     return currentPlayer;
   }
 
   // Click hold
   handleHoldScore() {
     let currentPlayer = this.currentPlayer;
+    if (this.gameStatus) {
+      currentPlayer.score += currentPlayer.current;
 
-    currentPlayer.score += currentPlayer.current;
-
-    if (currentPlayer.score >= Game.winningThreshold) {
-      this.updateDisplayOnRollOrHold(currentPlayer);
-      return this.displayWinner(currentPlayer);
-    } else {
-      Game.prtStr(`Player ${currentPlayer.no} score: ${currentPlayer.score}`);
-      currentPlayer = this.switchPlayer(currentPlayer);
+      if (currentPlayer.score >= Game.winningThreshold) {
+        this.updateDisplayOnRollOrHold(currentPlayer);
+        return this.displayWinner(currentPlayer);
+      } else {
+        Game.prtStr(`Player ${currentPlayer.no} score: ${currentPlayer.score}`);
+        currentPlayer = this.switchPlayer(currentPlayer);
+      }
     }
-
     return currentPlayer;
   }
 
