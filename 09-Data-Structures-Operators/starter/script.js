@@ -60,9 +60,123 @@ const restaurant = {
     );
   },
   orderPasta: function (ing1, ing2, ing3) {
-    console.log(`${ing1}, ${ing2}, ${ing3}`);
+    console.log(`Ingredients: ${ing1}, ${ing2}, ${ing3}`);
+  },
+  orderPizza: function (mainIngredient, ...otherIng) {
+    console.log(`${mainIngredient}`);
+    console.log(`${otherIng}`);
   },
 };
+
+const restaurant1 = {
+  name: 'Capri',
+  // numGuests: 20,
+  numGuests: 0,
+};
+
+const restaurant2 = {
+  name: 'Kola',
+  owner: 'Giovani Rossi',
+};
+
+// // OR assignment operator, assigns concrete value to falsy values
+// restaurant1.numGuests = restaurant1.numGuests || 10;
+// restaurant2.numGuests = restaurant2.numGuests || 10;
+// restaurant1.numGuests ||= 10
+// restaurant2.numGuests ||= 10
+
+// Nullish assignment operator
+restaurant1.numGuests ??= 10;
+restaurant2.numGuests ??= 10;
+
+// console.log(restaurant1.numGuests);
+// console.log(restaurant2.numGuests);
+
+// AND assignment operator
+// restaurant1.owner = restaurant1.owner && 'Anonymous'
+// restaurant2.owner = restaurant2.owner && 'Anonymous'
+
+restaurant1.owner &&= 'Anonymous';
+restaurant2.owner &&= 'Anonymous';
+
+console.log(restaurant1);
+console.log(restaurant2);
+
+// // Nullish coalescing operator, only null or undefined
+// restaurant.numGuests = 0;
+// const guests2 = restaurant.numGuests || 10;
+// console.log(guests2);
+
+// const guestCorrect = restaurant.numGuests ?? 10;
+// console.log(guestCorrect);
+
+// // Short circuiting, truthy and falsy comparisons
+// console.log('------------OR----------');
+// console.log(3 || 'nico');
+// console.log('' || 'nico');
+// console.log(true || 0);
+// console.log(undefined || null);
+
+// console.log(undefined || 0 || 'hello' || 23 || null);
+// restaurant.numGuests = 0;
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// console.log(guests1);
+
+// const guests2 = restaurant.numGuests || 10;
+// console.log(guests2);
+
+// console.log('----------AND--------');
+// console.log(0 && 'jonas');
+// console.log(7 && 'jonas');
+
+// console.log('hello' && 23 && null && 'jonas');
+
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('mushrooms', 'sipnach');
+// }
+
+// restaurant.orderNoodles && restaurant.orderPizza('mushrooms','eggplants')
+
+// restaurant.orderPizza('dough', 'peppers', 'mushrooms');
+
+// // SPREAD because on right
+// const arr = [1, 2, ...[3, 4]];
+
+// // REST beacasue on left
+// const [a, b, ...others] = [1, 2, 3, 4, 5];
+
+// console.log(a, b, others);
+
+// // Destructuring using REST operator
+// const [pizza, , risotto, ...otherFood] = [
+//   ...restaurant.mainMenu,
+//   ...restaurant.starterMenu,
+// ];
+
+// console.log(pizza, risotto, otherFood);
+
+// // Objects
+// const { sat, ...weekdays } = restaurant.openingHours;
+// console.log(weekdays);
+
+// Functions
+// const add = function (...args) {
+//   let sum = 0;
+
+//   for (const number of args) {
+//     sum += Number(number);
+//   }
+
+//   return sum;
+// };
+
+// const arr = [1, 2, 3, 4, 5];
+
+// // Passing individual arguments
+// console.log(add(1, 2, 3, 4, 5));
+
+// // Using spread operator to list out elements in array
+// console.log(add(...arr));
 
 // const ingredients = [
 //   prompt('Ingredient 1:'),
@@ -73,15 +187,15 @@ const restaurant = {
 // console.log(ingredients);
 // restaurant.orderPasta(...ingredients);
 
-// Objects
-const newRestaurant = {foundedYear: 1980, ...restaurant, founder: 'mario'};
-console.log(newRestaurant);
+// // Objects
+// const newRestaurant = {foundedYear: 1980, ...restaurant, founder: 'mario'};
+// console.log(newRestaurant);
 
-const restaurantCopy = {...restaurant};
-restaurantCopy.name = "ristorante roma";
+// const restaurantCopy = {...restaurant};
+// restaurantCopy.name = "ristorante roma";
 
-console.log(restaurant.name);
-console.log(restaurantCopy.name);
+// console.log(restaurant.name);
+// console.log(restaurantCopy.name);
 
 // restaurant.orderDelivery({
 //   // time: '22:30',
@@ -407,3 +521,108 @@ console.log(restaurantCopy.name);
 // const [fiveStarRating, oneStartRating, threeStarRating = 0] = ratingStars;
 
 // console.log(fiveStarRating, oneStartRating, threeStarRating);
+
+/* Falsy values:
+false
+0
+-0
+'' (empty string)
+null
+undefined
+NaN */
+
+/* 
+We're building a football betting app (soccer for my American friends 😅)!
+
+Suppose we get data from a web service about a certain game (below). In this challenge we're gonna work with the data. So here are your tasks:
+
+1. Create one player array for each team (variables 'players1' and 'players2')
+2. The first player in any player array is the goalkeeper and the others are field players. For Bayern Munich (team 1) create one variable ('gk') with the goalkeeper's name, and one array ('fieldPlayers') with all the remaining 10 field players
+3. Create an array 'allPlayers' containing all players of both teams (22 players)
+4. During the game, Bayern Munich (team 1) used 3 substitute players. So create a new array ('players1Final') containing all the original team1 players plus 'Thiago', 'Coutinho' and 'Perisic'
+5. Based on the game.odds object, create one variable for each odd (called 'team1', 'draw' and 'team2')
+6. Write a function ('printGoals') that receives an arbitrary number of player names (NOT an array) and prints each of them to the console, along with the number of goals that were scored in total (number of player names passed in)
+7. The team with the lower odd is more likely to win. Print to the console which team is more likely to win, WITHOUT using an if/else statement or the ternary operator.
+
+TEST DATA FOR 6: Use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'. Then, call the function again with players from game.scored
+
+GOOD LUCK 😀
+*/
+
+const team1 = {
+  name: 'team1',
+  players: ['timiy', 'judas', 'larry', 'paul'],
+};
+const team2 = {
+  name: 'team1',
+  players: ['lema', 'orion', 'pauline', 'gertha'],
+};
+
+const [gk, ...fieldPlayers] = team1.players;
+const allPlayers = [...team1.players, ...team2.players];
+
+const playersOneFinal = [...team1.players, 'Thiago', 'Coutinho', 'Perisic'];
+
+console.log(gk, allPlayers, playersOneFinal);
+
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+const { team1: t1, x: draw, team2: t2 } = game.odds;
+console.log(t1, draw, t2);
+
+function printGoals(...players) {
+  let sum = 0;
+  for (const player in players) {
+    sum++;
+  }
+  console.log(...players, `Total: ${sum}`);
+}
+
+printGoals(...team1.players);
+
+// Using OR logical operator
+console.log(game.odds.team2 < game.odds.team1 || game.team1);
+
+// Using AND logical operator
+console.log(game.odds.team1 < game.odds.team2 && game.team1);
+// Or
+game.odds.team1 < game.odds.team2 && console.log(`${game.team1} wins.`);
