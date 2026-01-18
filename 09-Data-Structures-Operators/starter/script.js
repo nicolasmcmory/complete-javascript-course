@@ -72,12 +72,12 @@ const restaurant = {
   },
 };
 
-const properties = Object.keys(openingHours);
-console.log(properties);
+// const properties = Object.keys(openingHours);
+// console.log(properties);
 
-for (const day of Object.keys(openingHours)) {
-  console.log(day);
-}
+// for (const day of Object.keys(openingHours)) {
+//   console.log(day);
+// }
 
 // const restaurant1 = {
 //   name: 'Capri',
@@ -176,18 +176,18 @@ for (const day of Object.keys(openingHours)) {
 // // SPREAD because on right
 // const arr = [1, 2, ...[3, 4]];
 
-// // REST beacasue on left
+// REST because on left
 // const [a, b, ...others] = [1, 2, 3, 4, 5];
 
 // console.log(a, b, others);
 
-// // Destructuring using REST operator
+// Destructuring using REST operator
 // const [pizza, , risotto, ...otherFood] = [
 //   ...restaurant.mainMenu,
 //   ...restaurant.starterMenu,
 // ];
 
-// console.log(pizza, risotto, otherFood);
+// console.log(pizza, risotto,otherFood);
 
 // // Objects
 // const { sat, ...weekdays } = restaurant.openingHours;
@@ -660,3 +660,181 @@ NaN */
 // console.log(game.odds.team1 < game.odds.team2 && game.team1);
 // // Or
 // game.odds.team1 < game.odds.team2 && console.log(`${game.team1} wins.`);
+
+///////////////////////////////////////
+// Coding Challenge #2
+
+/* 
+Let's continue with our football betting app!
+
+BONUS: Create an object called 'scorers' which contains the names of the players who scored as properties, and the number of goals as the value. In this game, it will look like this:
+      {
+        Gnarby: 1,
+        Hummels: 1,
+        Lewandowski: 2
+      }
+
+GOOD LUCK 😀
+*/
+
+// const game = {
+//   team1: 'Bayern Munich',
+//   team2: 'Borrussia Dortmund',
+//   players: [
+//     [
+//       'Neuer',
+//       'Pavard',
+//       'Martinez',
+//       'Alaba',
+//       'Davies',
+//       'Kimmich',
+//       'Goretzka',
+//       'Coman',
+//       'Muller',
+//       'Gnarby',
+//       'Lewandowski',
+//     ],
+//     [
+//       'Burki',
+//       'Schulz',
+//       'Hummels',
+//       'Akanji',
+//       'Hakimi',
+//       'Weigl',
+//       'Witsel',
+//       'Hazard',
+//       'Brandt',
+//       'Sancho',
+//       'Gotze',
+//     ],
+//   ],
+//   score: '4:0',
+//   scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+//   date: 'Nov 9th, 2037',
+//   odds: {
+//     team1: 1.33,
+//     x: 3.25,
+//     team2: 6.5,
+//   },
+// };
+
+// for(const [i, player] of game.scored.entries()){
+//   console.log(i, player)
+// }
+
+// // 1. Loop over the game.scored array and print each player name to the console, along with the goal number (Example: "Goal 1: Lewandowski")
+
+// const printName = (...players) => {
+//   let counter = 1;
+//   players.forEach(player => {
+//     console.log(`Goal ${counter}: ${player}`);
+//     counter++;
+//   });
+// };
+
+// // Extracting scored arr from game obj
+// const players = game.scored;
+
+// printName(...players);
+
+// // 2. Use a loop to calculate the average odd and log it to the console (We already studied how to calculate averages, you can go check if you don't remember)
+
+// // Iteration over a k,v (js object) so for in
+// const averageOdds = function (odds) {
+//   const oddsVals = Object.values(odds);
+
+//   let average = 0;
+
+//   for (const odd of oddsVals) average += odd;
+
+//   average /= oddsVals.length;
+
+//   return average;
+// };
+
+// console.log(averageOdds(game.odds));
+
+// /* 3. Print the 3 odds to the console, but in a nice formatted way, exaclty like this:
+//       Odd of victory Bayern Munich: 1.33
+//       Odd of draw: 3.25
+//       Odd of victory Borrussia Dortmund: 6.5
+// Get the team names directly from the game object, don't hardcode them (except for "draw"). HINT: Note how the odds and the game objects have the same property names 😉*/
+
+// function printOdds(game) {
+//   const [t1, t2] = Object.keys(game);
+
+//   const odds = game.odds;
+
+//   for (const [team, odd] of Object.entries(odds)) {
+
+//     // Short circuiting
+//     const winner = game[team] || "draw";
+
+//     let result = winner === 'draw' ? `\tOdd of ${winner}: ${odd}\n`: `\tOdd of victory ${winner}: ${odd}\n`;
+
+//     console.log(result)
+//   }
+// }
+
+// printOdds(game);
+
+/* 
+Here are the main methods available on JavaScript Set objects:
+
+Set Methods
+add(value)
+Adds a new element to the set.
+
+delete(value)
+Removes an element from the set.
+
+has(value)
+Checks if a value exists in the set.
+
+clear()
+Removes all elements from the set.
+
+forEach(callbackFn)
+Executes a function for each element in the set.
+
+entries()
+Returns an iterator of [value, value] pairs.
+
+values()
+Returns an iterator of values (same as keys()).
+
+keys()
+Returns an iterator of values (for compatibility with Map).
+
+size (property, not a method)
+Returns the number of elements in the set.
+
+New Set Methods (ES2025):
+intersection(otherSet)
+Returns a new set with elements common to both sets.
+
+union(otherSet)
+Returns a new set with all elements from both sets.
+
+difference(otherSet)
+Returns a new set with elements in the first set but not in the second.
+
+symmetricDifference(otherSet)
+Returns a new set with elements in either set, but not in both.
+
+isSubsetOf(otherSet)
+Checks if all elements of the set are in another set.
+
+isSupersetOf(otherSet)
+Checks if the set contains all elements of another set.
+
+isDisjointFrom(otherSet)
+Checks if two sets have no elements in common.
+
+Note: These methods are very new and may not be supported in all browsers/environments yet. Check compatibility before using them in production.
+
+Note:
+Set does not support direct access by index or key.
+
+
+ */
