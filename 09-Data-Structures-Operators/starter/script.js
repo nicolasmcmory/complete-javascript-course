@@ -72,6 +72,95 @@ const restaurant = {
   },
 };
 
+// const question = new Map([
+//   ['question', 'What is the best programming language in the world?'],
+//   [1, 'C'],
+//   [2, 'Java'],
+//   [3, 'Javascript'],
+//   [4, 'Python'],
+//   ['correct', 4],
+//   [true, 'Correct 🎈'],
+//   [false, 'Oops 🥕'],
+// ]);
+
+// console.log(question.get('question'));
+
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') {
+//     console.log(`Answer ${key}: ${value}`);
+//   }
+// }
+
+// const answer = Number(prompt('Your answer'));
+// console.log(answer);
+
+// const result = answer === question.get('correct');
+
+// console.log(question.get(result));
+
+//Creating arrays from Maps
+// const arr = [...question]
+// // console.log(arr)
+// // console.log([...arr.entries()])
+// console.log([...arr.keys()])
+// console.log([...arr.values()])
+
+///////////////////////////////////////
+// Coding Challenge #3
+
+/* 
+Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
+
+GOOD LUCK 😀
+*/
+
+// const gameEvents = new Map([
+//   [17, '⚽️ GOAL'],
+//   [36, '🔁 Substitution'],
+//   [47, '⚽️ GOAL'],
+//   [61, '🔁 Substitution'],
+//   [64, '🔶 Yellow card'],
+//   [69, '🔴 Red card'],
+//   [70, '🔁 Substitution'],
+//   [72, '🔁 Substitution'],
+//   [76, '⚽️ GOAL'],
+//   [80, '⚽️ GOAL'],
+//   [92, '🔶 Yellow card'],
+// ]);
+
+// // 1. Create an array 'events' of the different game events that happened (no duplicates)
+// const gameSet = [...new Set(gameEvents.values())];
+// console.log(gameSet);
+
+// // 2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
+
+// gameEvents.delete(64);
+// console.log(...gameEvents.keys());
+
+// // 3. Print the following string to the console: "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
+// let average = 90 / gameEvents.size;
+// console.log(`An event happened every ${average} minutes.`);
+
+// // 4. Loop over the events and log them to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this:
+// // [FIRST HALF] 17: ⚽️ GOAL
+
+// // FOR [key, val] in events
+// for (const [time, event] of gameEvents.entries()) {
+//   // IF event < 45
+//   // Print 'first half': key, val
+//   let message = ''
+//   if (time < 45) 
+//     message += `[First Half] ${time}: ${event}`;
+  
+//   // ELSE
+//   // Print 'secondhalf': key, val
+//   else
+//     message += `[Second Half] ${time}: ${event}`;
+
+//   console.log(message);
+// //ENDFOR 
+// }
+
 // const properties = Object.keys(openingHours);
 // console.log(properties);
 
@@ -838,3 +927,18 @@ Set does not support direct access by index or key.
 
 
  */
+
+const priceGB = '288,97£';
+const priceUS = priceGB.replace('£', '$').replace(',', '.');
+console.log(priceUS);
+const announcement = 'All passengers come to boarding door 23. Boarding door 23!';
+// console.log(announcement.replaceAll('door', 'gate'));
+console.log(announcement.replace(/door/g, 'gate'));
+const plane = 'A320neo';
+console.log(plane.includes('A320'));
+console.log(plane.startsWith('A3'));
+console.log(plane.endsWith('neo'));
+
+if (plane.startsWith('A3') && plane.endsWith('neo')) {
+  console.log('Part of the new Airbus family');
+}
