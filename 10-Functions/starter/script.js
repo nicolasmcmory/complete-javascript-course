@@ -196,10 +196,10 @@ const poll = {
   },
   type: 'array',
   displayResults() {
-    const scores = [...this.choices].map(([language, score]) => score);
+    const scores = this.choices.map(([language, score]) => score);
 
     if (this.type == 'string') {
-      console.log(`Poll results are: ${[...scores].join(", ")}`);
+      console.log(`Poll results are: ${scores.join(", ")}`);
     } else if (this.type == 'array') {
       console.log(...this.choices);
     }
