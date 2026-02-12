@@ -61,16 +61,35 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
+const displayMovements = function (movements) {
+  containerMovements.textContent = '';
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+  movements.forEach((mov, i) => {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+    const html = `
+          <div class="movements__row">
+          <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
+          <div class="movements__date">3 days ago</div>
+          <div class="movements__value">${mov}</div>
+        </div>`;
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
 
-/////////////////////////////////////////////////
+displayMovements(account1.movements);
+
+// Take accounts list and create userName in account from full name (owner), if userName exists already is overridden
+const createUserNames = acc => {
+  acc.forEach(a => {
+    a.userName = a.owner
+      .toLowerCase()
+      .split(' ')
+      .map(user => user[0])
+      .join('');
+  });
+};
+
+createUserNames(accounts);
+accounts.forEach(account => console.log(account.userName));
+console.log(account1.userName);
