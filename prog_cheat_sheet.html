@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cheat Sheet JavaScript vs Python</title>
+</head>
+
+<body>
+    <h2>Python vs JavaScript: Data Structure Methods Comparison</h2>
+    <table border="1" cellpadding="6" style="border-collapse:collapse; font-size:0.95em;">
+        <thead>
+            <tr style="background:#f0f0f0;">
+                <th>Functionality</th>
+                <th>Python <code>str</code></th>
+                <th>JS <code>String</code></th>
+                <th>Python <code>dict</code></th>
+                <th>JS <code>Map</code></th>
+                <th>JS <code>Object</code></th>
+                <th>Python <code>set</code></th>
+                <th>JS <code>Set</code></th>
+                <th>Python <code>list</code></th>
+                <th>JS <code>Array</code></th>
+            </tr>
+            <tr style="background:#f9f9f9; font-size:0.9em;">
+                <td></td>
+                <td colspan="2" style="text-align:center;">(Strings: immutable, always <span
+                        style='color:green;'>non-mutating</span>)</td>
+                <td colspan="3" style="text-align:center;">(Objects/Maps: <span style='color:#c60;'>mutating</span>)
+                </td>
+                <td colspan="2" style="text-align:center;">(Sets: <span style='color:#c60;'>mutating</span>)</td>
+                <td colspan="2" style="text-align:center;">(Lists/Arrays: see below)</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Length/Size</td>
+                <td><code>len(s)</code></td>
+                <td><code>s.length</code></td>
+                <td><code>len(d)</code></td>
+                <td><code>m.size</code></td>
+                <td><code>Object.keys(o).length</code></td>
+                <td><code>len(s)</code></td>
+                <td><code>set.size</code></td>
+                <td><code>len(l)</code></td>
+                <td><code>arr.length</code></td>
+            </tr>
+            <tr>
+                <td>Access element</td>
+                <td><code>s[i]</code></td>
+                <td><code>s[i]</code></td>
+                <td><code>d[k]</code></td>
+                <td><code>m.get(k)</code></td>
+                <td><code>o[k]</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>l[i]</code></td>
+                <td><code>arr[i]</code></td>
+            </tr>
+            <tr>
+                <td>Access by index (supports negative)</td>
+                <td><code>s[i]</code></td>
+                <td><code>s.at(i)</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>l[i]</code></td>
+                <td><code>arr.at(i)</code></td>
+            </tr>
+            <tr>
+                <td>Add/Set</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>d[k]=v</code></td>
+                <td><code>m.set(k,v)</code></td>
+                <td><code>o[k]=v</code></td>
+                <td><code>s.add(v)</code></td>
+                <td><code>set.add(v)</code></td>
+                <td><code>l.append(v)</code></td>
+                <td><code>arr.push(v)</code></td>
+            </tr>
+            <tr>
+                <td>Remove</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>del d[k]</code>, <code>d.pop(k)</code></td>
+                <td><code>m.delete(k)</code></td>
+                <td><code>delete o[k]</code></td>
+                <td><code>s.remove(v)</code>, <code>s.discard(v)</code></td>
+                <td><code>set.delete(v)</code></td>
+                <td><code>l.remove(v)</code>, <code>l.pop()</code></td>
+                <td><code>arr.splice(i,1)</code>, <code>arr.pop()</code></td>
+            </tr>
+            <tr>
+                <td>Clear all</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>d.clear()</code></td>
+                <td><code>m.clear()</code></td>
+                <td>–</td>
+                <td><code>s.clear()</code></td>
+                <td><code>set.clear()</code></td>
+                <td><code>l.clear()</code> (3.3+)</td>
+                <td><code>arr.splice(0)</code>, <code>arr=[]</code></td>
+            </tr>
+            <tr>
+                <td>Check existence</td>
+                <td><code>sub in s</code></td>
+                <td><code>s.includes(sub)</code></td>
+                <td><code>k in d</code></td>
+                <td><code>m.has(k)</code></td>
+                <td><code>k in o</code></td>
+                <td><code>v in s</code></td>
+                <td><code>set.has(v)</code></td>
+                <td><code>v in l</code></td>
+                <td><code>arr.includes(v)</code></td>
+            </tr>
+            <tr>
+                <td>Keys</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>d.keys()</code></td>
+                <td><code>m.keys()</code></td>
+                <td><code>Object.keys(o)</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Values</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>d.values()</code></td>
+                <td><code>m.values()</code></td>
+                <td><code>Object.values(o)</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Items/Entries</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>d.items()</code></td>
+                <td><code>m.entries()</code></td>
+                <td><code>Object.entries(o)</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Copy</td>
+                <td><code>s[:]</code></td>
+                <td><code>s.slice()</code></td>
+                <td><code>d.copy()</code></td>
+                <td>–</td>
+                <td><code>{...o}</code></td>
+                <td><code>s.copy()</code></td>
+                <td>–</td>
+                <td><code>l.copy()</code></td>
+                <td><code>arr.slice()</code>, <code>[...arr]</code></td>
+            </tr>
+            <tr style="background:#f9f9f9; font-size:0.9em;">
+                <td colspan="10">Mutation key: <span style="color:green;">Non-mutating</span> | <span
+                        style="color:#c60;">Mutating</span></td>
+            </tr>
+            <tr>
+                <td>Merge/Update</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>d.update()</code></td>
+                <td>loop <code>set()</code></td>
+                <td><code>Object.assign()</code></td>
+                <td><code>s.update()</code></td>
+                <td>–</td>
+                <td><code>l.extend()</code></td>
+                <td><code>arr.concat()</code></td>
+            </tr>
+            <tr>
+                <td>Sort</td>
+                <td><code>sorted(s)</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>sorted(s)</code></td>
+                <td>–</td>
+                <td><code>l.sort()</code></td>
+                <td><code>arr.sort()</code></td>
+            </tr>
+            <tr>
+                <td>Reverse</td>
+                <td><code>s[::-1]</code></td>
+                <td><code>[...s].reverse()</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>reversed(s)</code></td>
+                <td>–</td>
+                <td><code>l.reverse()</code></td>
+                <td><code>arr.reverse()</code></td>
+            </tr>
+            <tr>
+                <td>Find/Index</td>
+                <td><code>s.find(sub)</code></td>
+                <td><code>s.indexOf(sub)</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>l.index(v)</code></td>
+                <td><code>arr.indexOf(v)</code></td>
+            </tr>
+            <tr>
+                <td>Replace</td>
+                <td><code>s.replace(a,b)</code></td>
+                <td><code>s.replace(a,b)</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Split</td>
+                <td><code>s.split(sep)</code></td>
+                <td><code>s.split(sep)</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Join</td>
+                <td><code>sep.join(l)</code></td>
+                <td><code>arr.join(sep)</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Uppercase</td>
+                <td><code>s.upper()</code></td>
+                <td><code>s.toUpperCase()</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Lowercase</td>
+                <td><code>s.lower()</code></td>
+                <td><code>s.toLowerCase()</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Trim/Strip</td>
+                <td><code>s.strip()</code></td>
+                <td><code>s.trim()</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Repeat</td>
+                <td><code>s * n</code></td>
+                <td><code>s.repeat(n)</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>l * n</code></td>
+                <td><code>arr.concat(...Array(n).fill(arr))</code></td>
+            </tr>
+            <tr>
+                <td>Slice</td>
+                <td><code>s[start:end]</code> <span style="color:green;">(non-mutating)</span></td>
+                <td><code>s.slice(start, end)</code> <span style="color:green;">(non-mutating)</span></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>l[start:end]</code> <span style="color:green;">(non-mutating)</span></td>
+                <td><code>arr.slice(start, end)</code> <span style="color:green;">(non-mutating)</span></td>
+            </tr>
+            <tr>
+                <td>Splice</td>
+                <td>–</td>
+                <td><span style="color:#888;">Not available for strings</span></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>l[start:end] = vals</code> <span style="color:#c60;">(mutating)</span><br><span
+                        style="color:#888;">e.g. <code>l[2:4] = [7,8]</code></span></td>
+                <td><code>arr.splice(start, deleteCount, ...items)</code> <span
+                        style="color:#c60;">(mutating)</span><br><span style="color:#888;">e.g.
+                        <code>arr.splice(2, 2, 7, 8)</code></span></td>
+            </tr>
+            <tr>
+                <td>Pad</td>
+                <td><code>s.rjust(n,p)</code>, <code>s.ljust(n,p)</code></td>
+                <td><code>s.padStart(n,p)</code>, <code>s.padEnd(n,p)</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Count occurrences</td>
+                <td><code>s.count(sub)</code></td>
+                <td>–</td>
+                <td><code>l.count(v)</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>l.count(v)</code></td>
+                <td>–</td>
+                <td><code>l.count(v)</code></td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Format string</td>
+                <td><code>f"...{v}"</code>, <code>"...".format(v)</code></td>
+                <td><code>`...${v}`</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Loop with callback</td>
+                <td><code>for v in l</code></td>
+                <td><code>arr.forEach((v, i, arr) =&gt; ...)</code><br><span style="color:#888;">3rd arg
+                        <code>arr</code> is optional, only use if you need the array inside the callback</span></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>for v in l</code></td>
+                <td><code>arr.forEach((v, i, arr) =&gt; ...)</code></td>
+            </tr>
+            <tr>
+                <td>Map vs forEach</td>
+                <td><code>map(fn, l)</code> <span style="color:green;">(returns new
+                        list)</span><br><code>for v in l</code> <span style="color:#c60;">(side effects only)</span>
+                </td>
+                <td><code>arr.map(fn)</code> <span style="color:green;">(returns new
+                        array)</span><br><code>arr.forEach(fn)</code> <span style="color:#c60;">(side effects
+                        only)</span></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>map(fn, l)</code> <span style="color:green;">(returns new
+                        list)</span><br><code>for v in l</code> <span style="color:#c60;">(side effects only)</span>
+                </td>
+                <td><code>arr.map(fn)</code> <span style="color:green;">(returns new
+                        array)</span><br><code>arr.forEach(fn)</code> <span style="color:#c60;">(side effects
+                        only)</span></td>
+            </tr>
+            <tr>
+                <td>Filter</td>
+                <td><code>filter(fn, l)</code> <span style="color:green;">(returns filter object, use
+                        <code>list()</code> to get list)</span><br><code>[x for x in l if fn(x)]</code></td>
+                <td><code>arr.filter(fn)</code> <span style="color:green;">(returns new array)</span></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>filter(fn, l)</code> <span style="color:green;">(returns filter object, use
+                        <code>list()</code> to get list)</span><br><code>[x for x in l if fn(x)]</code></td>
+                <td><code>arr.filter(fn)</code> <span style="color:green;">(returns new array)</span></td>
+            </tr>
+            <tr>
+                 <td>Reduce</td>
+                 <td><code>from functools import reduce</code><br><code>reduce(lambda acc, x: ..., l, init)</code></td>
+                 <td><code>arr.reduce((acc, x, i, arr) =&gt; ..., init)</code></td>
+                 <td>–</td>
+                 <td>–</td>
+                 <td>–</td>
+                 <td>–</td>
+                 <td>–</td>
+                 <td><code>reduce(lambda acc, x: ..., l, init)</code></td>
+                 <td><code>arr.reduce((acc, x, i, arr) =&gt; ..., init)</code></td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="margin:1em 0; padding:0.7em; background:#f6f6f6; border-left:4px solid #4caf50; font-size:0.98em;">
+        <strong>Note:</strong> Python uses a single, versatile <code>for</code> loop for all iterables (lists, strings,
+        sets, dicts, etc.), making iteration simple and consistent. In contrast, JavaScript has multiple looping
+        constructs and array methods, which can be more complex to choose between.
+    </div>
+
+    <h2>JavaScript DOM Manipulation Methods</h2>
+    <table border="1" cellpadding="6" style="border-collapse:collapse; font-size:0.95em; margin-top:1em;">
+        <thead>
+            <tr style="background:#f0f0f0;">
+                <th>Category</th>
+                <th>Method/Property</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="5">Selecting Elements</td>
+                <td><code>document.querySelector(selector)</code></td>
+                <td>Returns first element matching CSS selector</td>
+                <td><code>document.querySelector('.btn')</code></td>
+            </tr>
+            <tr>
+                <td><code>document.querySelectorAll(selector)</code></td>
+                <td>Returns NodeList of all matching elements</td>
+                <td><code>document.querySelectorAll('.item')</code></td>
+            </tr>
+            <tr>
+                <td><code>document.getElementById(id)</code></td>
+                <td>Returns element by ID</td>
+                <td><code>document.getElementById('header')</code></td>
+            </tr>
+            <tr>
+                <td><code>document.getElementsByClassName(class)</code></td>
+                <td>Returns HTMLCollection by class name</td>
+                <td><code>document.getElementsByClassName('btn')</code></td>
+            </tr>
+            <tr>
+                <td><code>document.getElementsByTagName(tag)</code></td>
+                <td>Returns HTMLCollection by tag name</td>
+                <td><code>document.getElementsByTagName('div')</code></td>
+            </tr>
+
+            <tr>
+                <td rowspan="2">Creating Elements</td>
+                <td><code>document.createElement(tag)</code></td>
+                <td>Creates a new element</td>
+                <td><code>document.createElement('div')</code></td>
+            </tr>
+            <tr>
+                <td><code>element.cloneNode(deep)</code></td>
+                <td>Clones an element (deep=true includes children)</td>
+                <td><code>element.cloneNode(true)</code></td>
+            </tr>
+
+            <tr>
+                <td rowspan="3">Modifying Content</td>
+                <td><code>element.innerHTML</code></td>
+                <td>Gets/sets HTML content</td>
+                <td><code>el.innerHTML = '&lt;p&gt;Text&lt;/p&gt;'</code></td>
+            </tr>
+            <tr>
+                <td><code>element.textContent</code></td>
+                <td>Gets/sets text content (no HTML)</td>
+                <td><code>el.textContent = 'Hello'</code></td>
+            </tr>
+            <tr>
+                <td><code>element.innerText</code></td>
+                <td>Gets/sets visible text (respects CSS)</td>
+                <td><code>el.innerText = 'Visible text'</code></td>
+            </tr>
+
+            <tr>
+                <td rowspan="4">Modifying Attributes</td>
+                <td><code>element.setAttribute(name, value)</code></td>
+                <td>Sets an attribute</td>
+                <td><code>el.setAttribute('id', 'main')</code></td>
+            </tr>
+            <tr>
+                <td><code>element.getAttribute(name)</code></td>
+                <td>Gets an attribute value</td>
+                <td><code>el.getAttribute('href')</code></td>
+            </tr>
+            <tr>
+                <td><code>element.removeAttribute(name)</code></td>
+                <td>Removes an attribute</td>
+                <td><code>el.removeAttribute('disabled')</code></td>
+            </tr>
+            <tr>
+                <td><code>element.hasAttribute(name)</code></td>
+                <td>Checks if attribute exists</td>
+                <td><code>el.hasAttribute('data-id')</code></td>
+            </tr>
+
+            <tr>
+                <td rowspan="5">Modifying Classes</td>
+                <td><code>element.classList.add(class)</code></td>
+                <td>Adds a class</td>
+                <td><code>el.classList.add('active')</code></td>
+            </tr>
+            <tr>
+                <td><code>element.classList.remove(class)</code></td>
+                <td>Removes a class</td>
+                <td><code>el.classList.remove('hidden')</code></td>
+            </tr>
+            <tr>
+                <td><code>element.classList.toggle(class)</code></td>
+                <td>Toggles a class on/off</td>
+                <td><code>el.classList.toggle('open')</code></td>
+            </tr>
+            <tr>
+                <td><code>element.classList.contains(class)</code></td>
+                <td>Checks if class exists</td>
+                <td><code>el.classList.contains('active')</code></td>
+            </tr>
+            <tr>
+                <td><code>element.className</code></td>
+                <td>Gets/sets all classes as string</td>
+                <td><code>el.className = 'btn active'</code></td>
+            </tr>
+
+            <tr>
+                <td rowspan="2">Modifying Styles</td>
+                <td><code>element.style.property</code></td>
+                <td>Gets/sets inline CSS property</td>
+                <td><code>el.style.color = 'red'</code></td>
+            </tr>
+            <tr>
+                <td><code>window.getComputedStyle(element)</code></td>
+                <td>Gets computed CSS styles</td>
+                <td><code>getComputedStyle(el).width</code></td>
+            </tr>
+
+            <tr>
+                <td rowspan="5">Adding/Removing Elements</td>
+                <td><code>parent.appendChild(child)</code></td>
+                <td>Appends child as last child</td>
+                <td><code>parent.appendChild(newDiv)</code></td>
+            </tr>
+            <tr>
+                <td><code>parent.insertBefore(new, ref)</code></td>
+                <td>Inserts new element before reference</td>
+                <td><code>parent.insertBefore(el, refEl)</code></td>
+            </tr>
+            <tr>
+                <td><code>element.insertAdjacentHTML(pos, html)</code></td>
+                <td>Inserts HTML at position (beforebegin, afterbegin, beforeend, afterend)</td>
+                <td><code>el.insertAdjacentHTML('afterbegin', '&lt;p&gt;Hi&lt;/p&gt;')</code></td>
+            </tr>
+            <tr>
+                <td><code>parent.removeChild(child)</code></td>
+                <td>Removes a child element</td>
+                <td><code>parent.removeChild(child)</code></td>
+            </tr>
+            <tr>
+                <td><code>element.remove()</code></td>
+                <td>Removes element from DOM</td>
+                <td><code>el.remove()</code></td>
+            </tr>
+
+            <tr>
+                <td rowspan="2">Event Listeners</td>
+                <td><code>element.addEventListener(event, handler)</code></td>
+                <td>Adds event listener</td>
+                <td><code>btn.addEventListener('click', fn)</code></td>
+            </tr>
+            <tr>
+                <td><code>element.removeEventListener(event, handler)</code></td>
+                <td>Removes event listener</td>
+                <td><code>btn.removeEventListener('click', fn)</code></td>
+            </tr>
+
+            <tr>
+                <td rowspan="6">DOM Traversal</td>
+                <td><code>element.parentElement</code></td>
+                <td>Gets parent element</td>
+                <td><code>el.parentElement</code></td>
+            </tr>
+            <tr>
+                <td><code>element.children</code></td>
+                <td>Gets HTMLCollection of child elements</td>
+                <td><code>el.children</code></td>
+            </tr>
+            <tr>
+                <td><code>element.firstElementChild</code></td>
+                <td>Gets first child element</td>
+                <td><code>el.firstElementChild</code></td>
+            </tr>
+            <tr>
+                <td><code>element.lastElementChild</code></td>
+                <td>Gets last child element</td>
+                <td><code>el.lastElementChild</code></td>
+            </tr>
+            <tr>
+                <td><code>element.nextElementSibling</code></td>
+                <td>Gets next sibling element</td>
+                <td><code>el.nextElementSibling</code></td>
+            </tr>
+            <tr>
+                <td><code>element.previousElementSibling</code></td>
+                <td>Gets previous sibling element</td>
+                <td><code>el.previousElementSibling</code></td>
+            </tr>
+
+            <tr>
+                <td rowspan="2">Other</td>
+                <td><code>element.closest(selector)</code></td>
+                <td>Finds closest ancestor matching selector</td>
+                <td><code>el.closest('.container')</code></td>
+            </tr>
+            <tr>
+                <td><code>element.matches(selector)</code></td>
+                <td>Checks if element matches selector</td>
+                <td><code>el.matches('.active')</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Python Boolean Operators and Django ORM Field Lookups</h2>
+    <table border="1" cellpadding="6" style="border-collapse:collapse; font-size:0.95em; margin-top:1em;">
+        <thead>
+            <tr style="background:#f0f0f0;">
+                <th>Python Operator</th>
+                <th>Description</th>
+                <th>Django lookup / pattern</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>and / or / not</code> (logical)</td>
+                <td>Combine query conditions</td>
+                <td>Use <code>Q</code> objects combined with <code>&amp;</code>, <code>|</code>, <code>~</code></td>
+                <td><code>from django.db.models import Q<br>Book.objects.filter(Q(rating__gte=4) &amp; Q(is_bestselling=True))</code>
+                </td>
+            </tr>
+            <tr>
+                <td><code>==</code></td>
+                <td>Equality</td>
+                <td><code>field__exact</code> or <code>field__iexact</code></td>
+                <td><code>Book.objects.filter(title__exact='Dune')</code></td>
+            </tr>
+            <tr>
+                <td><code>!=</code></td>
+                <td>Inequality</td>
+                <td>Use <code>.exclude()</code> or <code>~Q(...)</code></td>
+                <td><code>Book.objects.exclude(title__exact='Dune')</code></td>
+            </tr>
+            <tr>
+                <td><code>&gt;, &gt;=, &lt;, &lt;=</code></td>
+                <td>Comparisons</td>
+                <td><code>field__gt</code>, <code>field__gte</code>, <code>field__lt</code>, <code>field__lte</code>
+                </td>
+                <td><code>Book.objects.filter(rating__gte=4)</code></td>
+            </tr>
+            <tr>
+                <td><code>in</code></td>
+                <td>Membership in a list/sequence</td>
+                <td><code>field__in</code></td>
+                <td><code>Book.objects.filter(id__in=[1,2,3])</code></td>
+            </tr>
+            <tr>
+                <td><code>is None / is not None</code></td>
+                <td>Check for NULL</td>
+                <td><code>field__isnull=True/False</code></td>
+                <td><code>Book.objects.filter(author__isnull=True)</code></td>
+            </tr>
+            <tr>
+                <td><code>in</code> (substring)</td>
+                <td>Substring membership</td>
+                <td><code>field__contains</code>, <code>field__icontains</code></td>
+                <td><code>Book.objects.filter(title__icontains='python')</code></td>
+            </tr>
+            <tr>
+                <td><code>startswith / endswith</code></td>
+                <td>Prefix/suffix match</td>
+                <td><code>field__startswith</code>, <code>field__istartswith</code>, <code>field__endswith</code>,
+                    <code>field__iendswith</code></td>
+                <td><code>Book.objects.filter(title__istartswith='The')</code></td>
+            </tr>
+            <tr>
+                <td><code>regex</code></td>
+                <td>Regular expression match</td>
+                <td><code>field__regex</code>, <code>field__iregex</code></td>
+                <td><code>Book.objects.filter(title__iregex=r"^The\\s")</code></td>
+            </tr>
+            <tr>
+                <td><code>range</code></td>
+                <td>Between two values</td>
+                <td><code>field__range</code></td>
+                <td><code>Book.objects.filter(rating__range=(2,4))</code></td>
+            </tr>
+        </tbody>
+    </table>
+    </table>
+
+    <h2>Bulk Django ORM Operations</h2>
+    <table border="1" cellpadding="6" style="border-collapse:collapse; font-size:0.95em; margin-top:1em;">
+        <thead>
+            <tr style="background:#f0f0f0;">
+                <th>Operation</th>
+                <th>What it does</th>
+                <th>Method / Example</th>
+                <th>Docs</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Delete multiple</td>
+                <td>Delete all records in a queryset at once.</td>
+                <td><code>Book.objects.filter(rating__lt=2).delete()</code></td>
+                <td><a href="https://docs.djangoproject.com/en/3.1/topics/db/queries/#deleting-objects">Deleting
+                        objects</a></td>
+            </tr>
+            <tr>
+                <td>Update multiple</td>
+                <td>Set a field value on every record in the queryset (runs a single UPDATE SQL).</td>
+                <td><code>Book.objects.filter(is_bestselling=True).update(rating=5)</code><br>Or use
+                    <code>bulk_update()</code> for many model instances.</td>
+                <td><a href="https://docs.djangoproject.com/en/3.0/ref/models/querysets/#bulk-update">bulk_update /
+                        update</a></td>
+            </tr>
+            <tr>
+                <td>Create multiple</td>
+                <td>Insert many model instances in a single query (more efficient than saving one-by-one).</td>
+                <td><code>Book.objects.bulk_create([Book(title='A'), Book(title='B')])</code></td>
+                <td><a href="https://docs.djangoproject.com/en/3.0/ref/models/querysets/#bulk-create">bulk_create</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>
+
+<!-- Major Git commands reference -->
+<h2>Major Git Terminal Commands</h2>
+<table border="1" cellpadding="6" style="border-collapse:collapse; font-size:0.95em; margin-top:1em;">
+    <thead>
+        <tr style="background:#f0f0f0;">
+            <th>Command</th>
+            <th>What it does</th>
+            <th>Example</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>git init</code></td>
+            <td>Initialize a new Git repository</td>
+            <td><code>git init</code></td>
+        </tr>
+        <tr>
+            <td><code>git clone &lt;repo-url&gt;</code></td>
+            <td>Clone a remote repository</td>
+            <td><code>git clone https://github.com/user/repo.git</code></td>
+        </tr>
+        <tr>
+            <td><code>git status</code></td>
+            <td>Show working tree status</td>
+            <td><code>git status</code></td>
+        </tr>
+        <tr>
+            <td><code>git add &lt;file&gt;</code></td>
+            <td>Stage changes for commit</td>
+            <td><code>git add prog_cheat_sheet.html</code></td>
+        </tr>
+        <tr>
+            <td><code>git commit -m &quot;msg&quot;</code></td>
+            <td>Commit staged changes with message</td>
+            <td><code>git commit -m "Add cheat sheet"</code></td>
+        </tr>
+        <tr>
+            <td><code>git commit --amend</code></td>
+            <td>Amend the most recent commit</td>
+            <td><code>git commit --amend -m "Fix message"</code></td>
+        </tr>
+        <tr>
+            <td><code>git log</code></td>
+            <td>Show commit history</td>
+            <td><code>git log --oneline --graph</code></td>
+        </tr>
+        <tr>
+            <td><code>git branch</code></td>
+            <td>List branches (or create with <code>git branch name</code>)</td>
+            <td><code>git branch feature-x</code></td>
+        </tr>
+        <tr>
+            <td><code>git checkout &lt;branch&gt;</code></td>
+            <td>Switch to a branch</td>
+            <td><code>git checkout main</code></td>
+        </tr>
+        <tr>
+            <td><code>git switch &lt;branch&gt;</code></td>
+            <td>Alternative to checkout for switching branches</td>
+            <td><code>git switch -c feature-x</code></td>
+        </tr>
+        <tr>
+            <td><code>git merge &lt;branch&gt;</code></td>
+            <td>Merge another branch into current</td>
+            <td><code>git merge feature-x</code></td>
+        </tr>
+        <tr>
+            <td><code>git rebase &lt;base&gt;</code></td>
+            <td>Reapply commits on top of another base</td>
+            <td><code>git rebase main</code></td>
+        </tr>
+        <tr>
+            <td><code>git fetch</code></td>
+            <td>Download objects and refs from remote</td>
+            <td><code>git fetch origin</code></td>
+        </tr>
+        <tr>
+            <td><code>git pull</code></td>
+            <td>Fetch + merge from remote</td>
+            <td><code>git pull origin main</code></td>
+        </tr>
+        <tr>
+            <td><code>git push</code></td>
+            <td>Push commits to remote</td>
+            <td><code>git push origin feature-x</code></td>
+        </tr>
+        <tr>
+            <td><code>git remote add &lt;name&gt; &lt;url&gt;</code></td>
+            <td>Add a remote repository</td>
+            <td><code>git remote add origin https://.../repo.git</code></td>
+        </tr>
+        <tr>
+            <td><code>git rm --cached &lt;file&gt;</code></td>
+            <td>Stop tracking a file but keep it locally</td>
+            <td><code>git rm --cached secret.txt</code></td>
+        </tr>
+        <tr>
+            <td><code>git reset --hard &lt;commit&gt;</code></td>
+            <td>Reset working tree to a commit (destructive)</td>
+            <td><code>git reset --hard HEAD~1</code></td>
+        </tr>
+        <tr>
+            <td><code>git revert &lt;commit&gt;</code></td>
+            <td>Create a new commit that undoes a previous commit</td>
+            <td><code>git revert abc1234</code></td>
+        </tr>
+        <tr>
+            <td><code>git stash</code></td>
+            <td>Temporarily save local changes</td>
+            <td><code>git stash save "WIP"</code></td>
+        </tr>
+        <tr>
+            <td><code>git stash pop</code></td>
+            <td>Apply and remove the most recent stash</td>
+            <td><code>git stash pop</code></td>
+        </tr>
+        <tr>
+            <td><code>git tag &lt;name&gt;</code></td>
+            <td>Create a tag for a commit</td>
+            <td><code>git tag v1.0</code></td>
+        </tr>
+        <tr>
+            <td><code>git diff</code></td>
+            <td>Show changes between commits, branches, or working tree</td>
+            <td><code>git diff HEAD~1..HEAD</code></td>
+        </tr>
+        <tr>
+            <td><code>git blame &lt;file&gt;</code></td>
+            <td>Show author and commit for each line</td>
+            <td><code>git blame prog_cheat_sheet.html</code></td>
+        </tr>
+        <tr>
+            <td><code>git cherry-pick &lt;commit&gt;</code></td>
+            <td>Apply a commit from another branch onto current</td>
+            <td><code>git cherry-pick abc1234</code></td>
+        </tr>
+    </tbody>
+</table>
