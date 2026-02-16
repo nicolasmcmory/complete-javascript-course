@@ -6,7 +6,7 @@
 
 /////////////////////////////////////////////////
 // Data
-const account1 = {
+const account = {
   owner: 'Jonas Schmedtmann',
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
   interestRate: 1.2, // %
@@ -38,7 +38,7 @@ const account4 = {
   type: 'basic',
 };
 
-const accounts = [account1, account2, account3, account4];
+const accounts = [account, account2, account3, account4];
 
 /////////////////////////////////////////////////
 // Elements
@@ -148,15 +148,15 @@ btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
 
-  currentAccount = accounts.find(
+  account = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
-  console.log(currentAccount);
+  console.log(account);
 
-  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+  if (account?.pin === Number(inputLoginPin.value)) {
     // Display UI and message
     labelWelcome.textContent = `Welcome back, ${
-      currentAccount.owner.split(' ')[0]
+      account.owner.split(' ')[0]
     }`;
     containerApp.style.opacity = 1;
 
@@ -165,7 +165,7 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginPin.blur();
 
     // Update UI
-    updateUI(currentAccount);
+    updateUI(account);
   }
 });
 
@@ -180,15 +180,15 @@ btnTransfer.addEventListener('click', function (e) {
   if (
     amount > 0 &&
     receiverAcc &&
-    currentAccount.balance >= amount &&
-    receiverAcc?.username !== currentAccount.username
+    account.balance >= amount &&
+    receiverAcc?.username !== account.username
   ) {
     // Doing the transfer
-    currentAccount.movements.push(-amount);
+    account.movements.push(-amount);
     receiverAcc.movements.push(amount);
 
     // Update UI
-    updateUI(currentAccount);
+    updateUI(account);
   }
 });
 
@@ -197,12 +197,12 @@ btnLoan.addEventListener('click', function (e) {
 
   const amount = Number(inputLoanAmount.value);
 
-  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+  if (amount > 0 && account.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
-    currentAccount.movements.push(amount);
+    account.movements.push(amount);
 
     // Update UI
-    updateUI(currentAccount);
+    updateUI(account);
   }
   inputLoanAmount.value = '';
 });
@@ -211,11 +211,11 @@ btnClose.addEventListener('click', function (e) {
   e.preventDefault();
 
   if (
-    inputCloseUsername.value === currentAccount.username &&
-    Number(inputClosePin.value) === currentAccount.pin
+    inputCloseUsername.value === account.username &&
+    Number(inputClosePin.value) === account.pin
   ) {
     const index = accounts.findIndex(
-      acc => acc.username === currentAccount.username
+      acc => acc.username === account.username
     );
     console.log(index);
     // .indexOf(23)
@@ -233,7 +233,7 @@ btnClose.addEventListener('click', function (e) {
 let sorted = false;
 btnSort.addEventListener('click', function (e) {
   e.preventDefault();
-  displayMovements(currentAccount.movements, !sorted);
+  displayMovements(account.movements, !sorted);
   sorted = !sorted;
 });
 

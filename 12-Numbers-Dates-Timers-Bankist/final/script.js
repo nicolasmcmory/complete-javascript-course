@@ -49,7 +49,7 @@ const account2 = {
   locale: 'en-US',
 };
 
-const accounts = [account1, account2];
+const accounts = [account, account2];
 
 /////////////////////////////////////////////////
 // Elements
@@ -230,15 +230,15 @@ btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
 
-  currentAccount = accounts.find(
+  account = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
-  console.log(currentAccount);
+  console.log(account);
 
-  if (currentAccount?.pin === +inputLoginPin.value) {
+  if (account?.pin === +inputLoginPin.value) {
     // Display UI and message
     labelWelcome.textContent = `Welcome back, ${
-      currentAccount.owner.split(' ')[0]
+      account.owner.split(' ')[0]
     }`;
     containerApp.style.opacity = 100;
 
@@ -256,7 +256,7 @@ btnLogin.addEventListener('click', function (e) {
     // console.log(locale);
 
     labelDate.textContent = new Intl.DateTimeFormat(
-      currentAccount.locale,
+      account.locale,
       options
     ).format(now);
 
@@ -276,7 +276,7 @@ btnLogin.addEventListener('click', function (e) {
     timer = startLogOutTimer();
 
     // Update UI
-    updateUI(currentAccount);
+    updateUI(account);
   }
 });
 
@@ -291,19 +291,19 @@ btnTransfer.addEventListener('click', function (e) {
   if (
     amount > 0 &&
     receiverAcc &&
-    currentAccount.balance >= amount &&
-    receiverAcc?.username !== currentAccount.username
+    account.balance >= amount &&
+    receiverAcc?.username !== account.username
   ) {
     // Doing the transfer
-    currentAccount.movements.push(-amount);
+    account.movements.push(-amount);
     receiverAcc.movements.push(amount);
 
     // Add transfer date
-    currentAccount.movementsDates.push(new Date().toISOString());
+    account.movementsDates.push(new Date().toISOString());
     receiverAcc.movementsDates.push(new Date().toISOString());
 
     // Update UI
-    updateUI(currentAccount);
+    updateUI(account);
 
     // Reset timer
     clearInterval(timer);
@@ -316,16 +316,16 @@ btnLoan.addEventListener('click', function (e) {
 
   const amount = Math.floor(inputLoanAmount.value);
 
-  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+  if (amount > 0 && account.movements.some(mov => mov >= amount * 0.1)) {
     setTimeout(function () {
       // Add movement
-      currentAccount.movements.push(amount);
+      account.movements.push(amount);
 
       // Add loan date
-      currentAccount.movementsDates.push(new Date().toISOString());
+      account.movementsDates.push(new Date().toISOString());
 
       // Update UI
-      updateUI(currentAccount);
+      updateUI(account);
 
       // Reset timer
       clearInterval(timer);
@@ -339,11 +339,11 @@ btnClose.addEventListener('click', function (e) {
   e.preventDefault();
 
   if (
-    inputCloseUsername.value === currentAccount.username &&
-    +inputClosePin.value === currentAccount.pin
+    inputCloseUsername.value === account.username &&
+    +inputClosePin.value === account.pin
   ) {
     const index = accounts.findIndex(
-      acc => acc.username === currentAccount.username
+      acc => acc.username === account.username
     );
     console.log(index);
     // .indexOf(23)
@@ -365,7 +365,7 @@ btnSort.addEventListener('click', function (e) {
   // displayMovements(currentAccount.movements, !sorted);
 
   // FIX:
-  displayMovements(currentAccount, !sorted);
+  displayMovements(account, !sorted);
   sorted = !sorted;
 });
 
