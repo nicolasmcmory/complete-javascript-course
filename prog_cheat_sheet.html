@@ -1,0 +1,2847 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Programming cheat sheet</title>
+</head>
+
+<body>
+    <h2>Python vs JavaScript: Data Structure Methods Comparison</h2>
+    <table border="1" cellpadding="6" style="border-collapse:collapse; font-size:0.95em;">
+        <thead>
+            <tr style="background:#f0f0f0;">
+                <th>Functionality</th>
+                <th>Python <code>str</code></th>
+                <th>JS <code>String</code></th>
+                <th>Python <code>dict</code></th>
+                <th>JS <code>Map</code></th>
+                <th>JS <code>Object</code></th>
+                <th>Python <code>set</code></th>
+                <th>JS <code>Set</code></th>
+                <th>Python <code>list</code></th>
+                <th>JS <code>Array</code></th>
+            </tr>
+            <tr style="background:#f9f9f9; font-size:0.9em;">
+                <td></td>
+                <td colspan="2" style="text-align:center;">(Strings: immutable, always <span
+                        style='color:green;'>non-mutating</span>)</td>
+                <td colspan="3" style="text-align:center;">(Objects/Maps: <span style='color:#c60;'>mutating</span>)
+                </td>
+                <td colspan="2" style="text-align:center;">(Sets: <span style='color:#c60;'>mutating</span>)</td>
+                <td colspan="2" style="text-align:center;">(Lists/Arrays: see below)</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Length/Size</td>
+                <td><code>len(s)</code></td>
+                <td><code>s.length</code></td>
+                <td><code>len(d)</code></td>
+                <td><code>m.size</code></td>
+                <td><code>Object.keys(o).length</code></td>
+                <td><code>len(s)</code></td>
+                <td><code>set.size</code></td>
+                <td><code>len(l)</code></td>
+                <td><code>arr.length</code></td>
+            </tr>
+            <tr>
+                <td>Identity / Equality</td>
+                <td><code>is</code> (identity)<br><code>==</code> (equality)</td>
+                <td><code>===</code> (strict equality)<br><code>==</code> (loose equality)</td>
+                <td><code>is</code> (identity)<br><code>==</code> (equality)</td>
+                <td><code>===</code> (strict equality)<br><code>==</code> (loose equality)</td>
+                <td><code>===</code> (strict equality)<br><code>==</code> (loose equality)</td>
+                <td><code>is</code> (identity)<br><code>==</code> (equality)</td>
+                <td><code>===</code> (strict equality)<br><code>==</code> (loose equality)</td>
+                <td><code>is</code> (identity)<br><code>==</code> (equality)</td>
+                <td><code>===</code> (strict equality)<br><code>==</code> (loose equality)</td>
+            </tr>
+            <tr>
+                <td>Inequality</td>
+                <td><code>!=</code></td>
+                <td><code>!==</code> (strict)<br><code>!=</code> (loose)</td>
+                <td><code>!=</code></td>
+                <td><code>!==</code> (strict)<br><code>!=</code> (loose)</td>
+                <td><code>!==</code> (strict)<br><code>!=</code> (loose)</td>
+                <td><code>!=</code></td>
+                <td><code>!==</code> (strict)<br><code>!=</code> (loose)</td>
+                <td><code>!=</code></td>
+                <td><code>!==</code> (strict)<br><code>!=</code> (loose)</td>
+            </tr>
+            <tr>
+                <td>Logical AND</td>
+                <td><code>and</code></td>
+                <td><code>&amp;&amp;</code></td>
+                <td><code>and</code></td>
+                <td><code>&amp;&amp;</code></td>
+                <td><code>&amp;&amp;</code></td>
+                <td><code>and</code></td>
+                <td><code>&amp;&amp;</code></td>
+                <td><code>and</code></td>
+                <td><code>&amp;&amp;</code></td>
+            </tr>
+            <tr>
+                <td>Logical OR</td>
+                <td><code>or</code></td>
+                <td><code>||</code></td>
+                <td><code>or</code></td>
+                <td><code>||</code></td>
+                <td><code>||</code></td>
+                <td><code>or</code></td>
+                <td><code>||</code></td>
+                <td><code>or</code></td>
+                <td><code>||</code></td>
+            </tr>
+            <tr>
+                <td>Logical NOT</td>
+                <td><code>not</code></td>
+                <td><code>!</code></td>
+                <td><code>not</code></td>
+                <td><code>!</code></td>
+                <td><code>!</code></td>
+                <td><code>not</code></td>
+                <td><code>!</code></td>
+                <td><code>not</code></td>
+                <td><code>!</code></td>
+            </tr>
+            <tr>
+                <td>Comparison</td>
+                <td><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></td>
+                <td><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></td>
+                <td><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></td>
+                <td><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></td>
+                <td><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></td>
+                <td><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></td>
+                <td><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></td>
+                <td><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></td>
+                <td><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></td>
+            </tr>
+            <tr>
+                <td>Walrus operator (assignment expression)</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>:=</code> (3.8+)<br><span style="color:#888;">e.g.
+                        <code>if (n := len(l)) &gt; 10:</code></span></td>
+                <td><span style="color:#888;">No direct equivalent<br>(use regular assignment)</span></td>
+            </tr>
+            <tr>
+                <td>Access element</td>
+                <td><code>s[i]</code></td>
+                <td><code>s[i]</code></td>
+                <td><code>d[k]</code></td>
+                <td><code>m.get(k)</code></td>
+                <td><code>o[k]</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>l[i]</code></td>
+                <td><code>arr[i]</code></td>
+            </tr>
+            <tr>
+                <td>Access by index (supports negative)</td>
+                <td><code>s[i]</code></td>
+                <td><code>s.at(i)</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>l[i]</code></td>
+                <td><code>arr.at(i)</code></td>
+            </tr>
+            <tr>
+                <td>Add to end</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>d[k]=v</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>m.set(k,v)</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>o[k]=v</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>s.add(v)</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>set.add(v)</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>l.append(v)</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>arr.push(v)</code> <span style="color:#c60;">(mutating)</span></td>
+            </tr>
+            <tr>
+                <td>Add to beginning</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>l.insert(0, v)</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>arr.unshift(v)</code> <span style="color:#c60;">(mutating)</span></td>
+            </tr>
+            <tr>
+                <td>Insert at position</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>l.insert(i, v)</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>arr.splice(i, 0, v)</code> <span style="color:#c60;">(mutating)</span></td>
+            </tr>
+            <tr>
+                <td>Remove from end</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>s.pop()</code> <span style="color:#c60;">(mutating)</span></td>
+                <td>–</td>
+                <td><code>l.pop()</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>arr.pop()</code> <span style="color:#c60;">(mutating)</span></td>
+            </tr>
+            <tr>
+                <td>Remove from beginning</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>l.pop(0)</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>arr.shift()</code> <span style="color:#c60;">(mutating)</span></td>
+            </tr>
+            <tr>
+                <td>Remove</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>del d[k]</code>, <code>d.pop(k)</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>m.delete(k)</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>delete o[k]</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>s.remove(v)</code>, <code>s.discard(v)</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>set.delete(v)</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>l.remove(v)</code>, <code>l.pop()</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>arr.splice(i,1)</code>, <code>arr.pop()</code> <span style="color:#c60;">(mutating)</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Clear all</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>d.clear()</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>m.clear()</code> <span style="color:#c60;">(mutating)</span></td>
+                <td>–</td>
+                <td><code>s.clear()</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>set.clear()</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>l.clear()</code> (3.3+) <span style="color:#c60;">(mutating)</span></td>
+                <td><code>arr.splice(0)</code> <span style="color:#c60;">(mutating)</span>, <code>arr=[]</code> <span
+                        style="color:green;">(reassignment)</span></td>
+            </tr>
+            <tr>
+                <td>Check existence</td>
+                <td><code>sub in s</code></td>
+                <td><code>s.includes(sub)</code></td>
+                <td><code>k in d</code></td>
+                <td><code>m.has(k)</code></td>
+                <td><code>k in o</code></td>
+                <td><code>v in s</code></td>
+                <td><code>set.has(v)</code></td>
+                <td><code>v in l</code></td>
+                <td><code>arr.includes(v)</code></td>
+            </tr>
+            <tr>
+                <td>Keys</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>d.keys()</code></td>
+                <td><code>m.keys()</code></td>
+                <td><code>Object.keys(o)</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Values</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>d.values()</code></td>
+                <td><code>m.values()</code></td>
+                <td><code>Object.values(o)</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Items/Entries</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>d.items()</code></td>
+                <td><code>m.entries()</code></td>
+                <td><code>Object.entries(o)</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr style="background:#f9f9f9; font-size:0.9em;">
+                <td colspan="10" style="text-align:center;"><strong>Set Operations</strong> (Python sets have rich
+                    built-in support; JS added native Set methods in ES2025 - may require fallbacks for older browsers)
+                </td>
+            </tr>
+            <tr>
+                <td>Union (combine sets)</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>s1 | s2</code> or <code>s1.union(s2)</code> <span style="color:green;">(non-mutating)</span>
+                </td>
+                <td><code>set1.union(set2)</code> <span style="color:green;">(ES2025, non-mutating)</span><br><span
+                        style="color:#888;">Fallback: <code>new Set([...set1, ...set2])</code></span></td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Intersection (common elements)</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>s1 &amp; s2</code> or <code>s1.intersection(s2)</code> <span
+                        style="color:green;">(non-mutating)</span></td>
+                <td><code>set1.intersection(set2)</code> <span style="color:green;">(ES2025,
+                        non-mutating)</span><br><span style="color:#888;">Fallback:
+                        <code>new Set([...set1].filter(x =&gt; set2.has(x)))</code></span></td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Difference (elements in first, not second)</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>s1 - s2</code> or <code>s1.difference(s2)</code> <span
+                        style="color:green;">(non-mutating)</span></td>
+                <td><code>set1.difference(set2)</code> <span style="color:green;">(ES2025, non-mutating)</span><br><span
+                        style="color:#888;">Fallback:
+                        <code>new Set([...set1].filter(x =&gt; !set2.has(x)))</code></span></td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Symmetric difference (elements in either, not both)</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>s1 ^ s2</code> or <code>s1.symmetric_difference(s2)</code> <span
+                        style="color:green;">(non-mutating)</span></td>
+                <td><code>set1.symmetricDifference(set2)</code> <span style="color:green;">(ES2025,
+                        non-mutating)</span><br><span style="color:#888;">Fallback: combine difference operations</span>
+                </td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Is subset (all elements in other)</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>s1 &lt;= s2</code> or <code>s1.issubset(s2)</code> <span style="color:green;">(returns
+                        bool)</span></td>
+                <td><code>set1.isSubsetOf(set2)</code> <span style="color:green;">(ES2025, returns bool)</span><br><span
+                        style="color:#888;">Fallback: <code>[...set1].every(x =&gt; set2.has(x))</code></span></td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Is superset (contains all elements of other)</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>s1 &gt;= s2</code> or <code>s1.issuperset(s2)</code> <span style="color:green;">(returns
+                        bool)</span></td>
+                <td><code>set1.isSupersetOf(set2)</code> <span style="color:green;">(ES2025, returns
+                        bool)</span><br><span style="color:#888;">Fallback:
+                        <code>[...set2].every(x =&gt; set1.has(x))</code></span></td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Is disjoint (no common elements)</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>s1.isdisjoint(s2)</code> <span style="color:green;">(returns bool)</span></td>
+                <td><code>set1.isDisjointFrom(set2)</code> <span style="color:green;">(ES2025, returns
+                        bool)</span><br><span style="color:#888;">Fallback:
+                        <code>[...set1].every(x =&gt; !set2.has(x))</code></span></td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Copy</td>
+                <td><code>s[:]</code> <span style="color:green;">(non-mutating)</span></td>
+                <td><code>s.slice()</code> <span style="color:green;">(non-mutating)</span></td>
+                <td><code>d.copy()</code> <span style="color:green;">(non-mutating)</span></td>
+                <td>–</td>
+                <td><code>{...o}</code> <span style="color:green;">(non-mutating)</span></td>
+                <td><code>s.copy()</code> <span style="color:green;">(non-mutating)</span></td>
+                <td>–</td>
+                <td><code>l.copy()</code> <span style="color:green;">(non-mutating)</span></td>
+                <td><code>arr.slice()</code>, <code>[...arr]</code> <span style="color:green;">(non-mutating)</span>
+                </td>
+            </tr>
+            <tr style="background:#f9f9f9; font-size:0.9em;">
+                <td colspan="10">Mutation key: <span style="color:green;">Non-mutating</span> | <span
+                        style="color:#c60;">Mutating</span></td>
+            </tr>
+            <tr>
+                <td>Merge/Update</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>d.update()</code> <span style="color:#c60;">(mutating)</span></td>
+                <td>loop <code>set()</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>Object.assign()</code> <span style="color:#c60;">(mutates target)</span></td>
+                <td><code>s.update()</code> or <code>s |= s2</code> <span style="color:#c60;">(mutating union)</span>
+                </td>
+                <td>–</td>
+                <td><code>l.extend()</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>arr.concat()</code> <span style="color:green;">(non-mutating)</span></td>
+            </tr>
+            <tr>
+                <td>Intersection update (keep only common)</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>s.intersection_update(s2)</code> or <code>s &amp;= s2</code> <span
+                        style="color:#c60;">(mutating)</span></td>
+                <td><span style="color:#888;">Manual iteration required</span></td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Difference update (remove common)</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>s.difference_update(s2)</code> or <code>s -= s2</code> <span
+                        style="color:#c60;">(mutating)</span></td>
+                <td><span style="color:#888;">Manual iteration required</span></td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Symmetric difference update</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>s.symmetric_difference_update(s2)</code> or <code>s ^= s2</code> <span
+                        style="color:#c60;">(mutating)</span></td>
+                <td><span style="color:#888;">Manual iteration required</span></td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Sort</td>
+                <td><code>sorted(s)</code> <span style="color:green;">(non-mutating)</span></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>sorted(s)</code> <span style="color:green;">(non-mutating)</span></td>
+                <td>–</td>
+                <td><code>l.sort()</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>arr.sort()</code> <span style="color:#c60;">(mutating)</span></td>
+            </tr>
+            <tr>
+                <td>Reverse</td>
+                <td><code>s[::-1]</code> <span style="color:green;">(non-mutating)</span></td>
+                <td><code>[...s].reverse()</code> <span style="color:green;">(non-mutating)</span></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>reversed(s)</code> <span style="color:green;">(non-mutating)</span></td>
+                <td>–</td>
+                <td><code>l.reverse()</code> <span style="color:#c60;">(mutating)</span></td>
+                <td><code>arr.reverse()</code> <span style="color:#c60;">(mutating)</span></td>
+            </tr>
+            <tr>
+                <td>Find index of value</td>
+                <td><code>s.find(sub)</code> (returns -1 if not found)</td>
+                <td><code>s.indexOf(sub)</code> (returns -1 if not found)</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>l.index(v)</code> (raises ValueError if not found)</td>
+                <td><code>arr.indexOf(v)</code> (returns -1 if not found)</td>
+            </tr>
+            <tr>
+                <td>Find last index of value</td>
+                <td><code>s.rfind(sub)</code> (returns -1 if not found)</td>
+                <td><code>s.lastIndexOf(sub)</code> (returns -1 if not found)</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>len(l) - 1 - l[::-1].index(v)</code></td>
+                <td><code>arr.lastIndexOf(v)</code> (returns -1 if not found)</td>
+            </tr>
+            <tr>
+                <td>Find first match (by condition)</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>next((x for x in l if fn(x)), default)</code></td>
+                <td><code>arr.find(fn)</code> <span style="color:green;">(returns undefined if not found)</span></td>
+            </tr>
+            <tr>
+                <td>Find index (by condition)</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>next((i for i, x in enumerate(l) if fn(x)), -1)</code></td>
+                <td><code>arr.findIndex(fn)</code> <span style="color:green;">(returns -1 if not found)</span></td>
+            </tr>
+            <tr>
+                <td>Find last match (by condition)</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>next((x for x in reversed(l) if fn(x)), default)</code></td>
+                <td><code>arr.findLast(fn)</code> <span style="color:green;">(returns undefined if not found)</span></td>
+            </tr>
+            <tr>
+                <td>Find last index (by condition)</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>next((len(l) - 1 - i for i, x in enumerate(reversed(l)) if fn(x)), -1)</code></td>
+                <td><code>arr.findLastIndex(fn)</code> <span style="color:green;">(returns -1 if not found)</span></td>
+            </tr>
+            <tr>
+                <td>Check if some element matches condition</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>any(fn(x) for x in l)</code></td>
+                <td><code>arr.some(fn)</code></td>
+            </tr>
+            <tr>
+                <td>Check if every element matches condition</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>all(fn(x) for x in l)</code></td>
+                <td><code>arr.every(fn)</code></td>
+            </tr>
+            <tr>
+                <td>Enumerate (iterate with index)</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>for i, v in enumerate(l)</code></td>
+                <td><code>arr.forEach((v, i) =&gt; ...)</code> or <code>for...of arr.entries()</code></td>
+            </tr>
+            <tr>
+                <td>Replace</td>
+                <td><code>s.replace(a,b)</code> <span style="color:green;">(non-mutating)</span></td>
+                <td><code>s.replace(a,b)</code> <span style="color:green;">(non-mutating)</span></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Split</td>
+                <td><code>s.split(sep)</code> <span style="color:green;">(returns new list)</span></td>
+                <td><code>s.split(sep)</code> <span style="color:green;">(returns new array)</span></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Join</td>
+                <td><code>sep.join(l)</code> <span style="color:green;">(returns new string)</span></td>
+                <td><code>arr.join(sep)</code> <span style="color:green;">(returns new string)</span></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Uppercase</td>
+                <td><code>s.upper()</code> <span style="color:green;">(non-mutating)</span></td>
+                <td><code>s.toUpperCase()</code> <span style="color:green;">(non-mutating)</span></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Lowercase</td>
+                <td><code>s.lower()</code> <span style="color:green;">(non-mutating)</span></td>
+                <td><code>s.toLowerCase()</code> <span style="color:green;">(non-mutating)</span></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Trim/Strip</td>
+                <td><code>s.strip()</code> <span style="color:green;">(non-mutating)</span></td>
+                <td><code>s.trim()</code> <span style="color:green;">(non-mutating)</span></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Repeat</td>
+                <td><code>s * n</code> <span style="color:green;">(non-mutating)</span></td>
+                <td><code>s.repeat(n)</code> <span style="color:green;">(non-mutating)</span></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>l * n</code> <span style="color:green;">(non-mutating)</span></td>
+                <td><code>arr.concat(...Array(n).fill(arr))</code> <span style="color:green;">(non-mutating)</span></td>
+            </tr>
+            <tr>
+                <td>Slice</td>
+                <td><code>s[start:end]</code> <span style="color:green;">(non-mutating)</span></td>
+                <td><code>s.slice(start, end)</code> <span style="color:green;">(non-mutating)</span></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>l[start:end]</code> <span style="color:green;">(non-mutating)</span></td>
+                <td><code>arr.slice(start, end)</code> <span style="color:green;">(non-mutating)</span></td>
+            </tr>
+            <tr>
+                <td>Splice</td>
+                <td>–</td>
+                <td><span style="color:#888;">Not available for strings</span></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>l[start:end] = vals</code> <span style="color:#c60;">(mutating)</span><br><span
+                        style="color:#888;">e.g. <code>l[2:4] = [7,8]</code></span></td>
+                <td><code>arr.splice(start, deleteCount, ...items)</code> <span
+                        style="color:#c60;">(mutating)</span><br><span style="color:#888;">e.g.
+                        <code>arr.splice(2, 2, 7, 8)</code></span></td>
+            </tr>
+            <tr>
+                <td>Pad</td>
+                <td><code>s.rjust(n,p)</code>, <code>s.ljust(n,p)</code> <span
+                        style="color:green;">(non-mutating)</span></td>
+                <td><code>s.padStart(n,p)</code>, <code>s.padEnd(n,p)</code> <span
+                        style="color:green;">(non-mutating)</span></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Count occurrences</td>
+                <td><code>s.count(sub)</code></td>
+                <td>–</td>
+                <td><code>l.count(v)</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>l.count(v)</code></td>
+                <td>–</td>
+                <td><code>l.count(v)</code></td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Format string</td>
+                <td><code>f"...{v}"</code>, <code>"...".format(v)</code> <span style="color:green;">(returns new
+                        string)</span></td>
+                <td><code>`...${v}`</code> <span style="color:green;">(returns new string)</span></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+            </tr>
+            <tr>
+                <td>Loop with callback</td>
+                <td><code>for v in l</code></td>
+                <td><code>arr.forEach((v, i, arr) =&gt; ...)</code><br><span style="color:#888;">3rd arg
+                        <code>arr</code> is optional, only use if you need the array inside the callback</span></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>for v in l</code></td>
+                <td><code>arr.forEach((v, i, arr) =&gt; ...)</code></td>
+            </tr>
+            <tr>
+                <td>Map vs forEach</td>
+                <td><code>map(fn, l)</code> <span style="color:green;">(returns new
+                        list)</span><br><code>for v in l</code> <span style="color:#c60;">(side effects only)</span>
+                </td>
+                <td><code>arr.map(fn)</code> <span style="color:green;">(returns new
+                        array)</span><br><code>arr.forEach(fn)</code> <span style="color:#c60;">(side effects
+                        only)</span></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>map(fn, l)</code> <span style="color:green;">(returns new
+                        list)</span><br><code>for v in l</code> <span style="color:#c60;">(side effects only)</span>
+                </td>
+                <td><code>arr.map(fn)</code> <span style="color:green;">(returns new
+                        array)</span><br><code>arr.forEach(fn)</code> <span style="color:#c60;">(side effects
+                        only)</span></td>
+            </tr>
+            <tr>
+                <td>Filter</td>
+                <td><code>filter(fn, l)</code> <span style="color:green;">(returns filter object, use
+                        <code>list()</code> to get list)</span><br><code>[x for x in l if fn(x)]</code></td>
+                <td><code>arr.filter(fn)</code> <span style="color:green;">(returns new array)</span></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>filter(fn, l)</code> <span style="color:green;">(returns filter object, use
+                        <code>list()</code> to get list)</span><br><code>[x for x in l if fn(x)]</code></td>
+                <td><code>arr.filter(fn)</code> <span style="color:green;">(returns new array)</span></td>
+            </tr>
+            <tr>
+                <td>Reduce</td>
+                <td><code>from functools import reduce</code><br><code>reduce(lambda acc, x: ..., l, init)</code></td>
+                <td><code>arr.reduce((acc, x, i, arr) =&gt; ..., init)</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>reduce(lambda acc, x: ..., l, init)</code></td>
+                <td><code>arr.reduce((acc, x, i, arr) =&gt; ..., init)</code></td>
+            </tr>
+            <tr>
+                <td>Every (all match)</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>all(fn(x) for x in l)</code> <span style="color:green;">(returns bool)</span></td>
+                <td><code>arr.every(fn)</code> <span style="color:green;">(returns bool)</span></td>
+            </tr>
+            <tr>
+                <td>Some (any match)</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>any(fn(x) for x in l)</code> <span style="color:green;">(returns bool)</span></td>
+                <td><code>arr.some(fn)</code> <span style="color:green;">(returns bool)</span></td>
+            </tr>
+            <tr>
+                <td>Min value</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>min(s)</code></td>
+                <td>–</td>
+                <td><code>min(l)</code></td>
+                <td><code>Math.min(...arr)</code></td>
+            </tr>
+            <tr>
+                <td>Max value</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>max(s)</code></td>
+                <td>–</td>
+                <td><code>max(l)</code></td>
+                <td><code>Math.max(...arr)</code></td>
+            </tr>
+            <tr>
+                <td>Sum values</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>sum(s)</code></td>
+                <td>–</td>
+                <td><code>sum(l)</code></td>
+                <td><code>arr.reduce((a,b) =&gt; a+b, 0)</code></td>
+            </tr>
+            <tr>
+                <td>Flatten</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>[item for sublist in l for item in sublist]</code><br><span style="color:#888;">or
+                        <code>itertools.chain.from_iterable(l)</code></span></td>
+                <td><code>arr.flat(depth)</code> <span style="color:green;">(non-mutating)</span><br><span
+                        style="color:#888;">depth defaults to 1</span></td>
+            </tr>
+            <tr>
+                <td>Fill with value</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>[val] * n</code> <span style="color:green;">(creates new list)</span></td>
+                <td><code>arr.fill(val, start, end)</code> <span
+                        style="color:#c60;">(mutating)</span><br><code>Array(n).fill(val)</code> <span
+                        style="color:green;">(creates new)</span></td>
+            </tr>
+            <tr>
+                <td>FlatMap (map + flatten)</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>[item for x in l for item in fn(x)]</code> <span style="color:green;">(list
+                        comprehension)</span></td>
+                <td><code>arr.flatMap(fn)</code> <span style="color:green;">(non-mutating)</span></td>
+            </tr>
+            <tr>
+                <td>Zip (combine iterables)</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>list(zip(l1, l2))</code><br><span style="color:#888;">e.g.
+                        <code>[(1,'a'), (2,'b')]</code></span></td>
+                <td><code>arr1.map((v, i) =&gt; [v, arr2[i]])</code><br><span style="color:#888;">No built-in zip</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Convert iterable to list/array</td>
+                <td>–</td>
+                <td><code>Array.from(str)</code> or <code>[...str]</code></td>
+                <td>–</td>
+                <td>–</td>
+                <td><code>Object.values(o)</code> or <code>[...Object.values(o)]</code></td>
+                <td>–</td>
+                <td><code>Array.from(set)</code> or <code>[...set]</code></td>
+                <td>–</td>
+                <td><code>Array.from(iterable)</code> or <code>[...iterable]</code></td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="margin:1em 0; padding:0.7em; background:#f6f6f6; border-left:4px solid #4caf50; font-size:0.98em;">
+        <strong>Note:</strong> Python uses a single, versatile <code>for</code> loop for all iterables (lists, strings,
+        sets, dicts, etc.), making iteration simple and consistent. In contrast, JavaScript has multiple looping
+        constructs and array methods, which can be more complex to choose between. <strong>ES2025</strong> introduced
+        native Set operation methods (<code>union()</code>, <code>intersection()</code>, etc.), but browser support may
+        vary—use fallbacks for older environments.
+    </div>
+
+    <h2>Scope, Call Stack & Scope Chain</h2>
+    <table border="1" cellpadding="6" style="border-collapse:collapse; font-size:0.95em; margin-top:1em;">
+        <thead>
+            <tr style="background:#f0f0f0;">
+                <th style="width:20%;">Concept</th>
+                <th style="width:40%;">Python</th>
+                <th style="width:40%;">JavaScript</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Scope Resolution Order</strong></td>
+                <td>
+                    <strong>LEGB Rule:</strong><br>
+                    <strong>L</strong>ocal → <strong>E</strong>nclosing → <strong>G</strong>lobal →
+                    <strong>B</strong>uilt-in<br>
+                    <small>Python searches scopes in this order to resolve names</small>
+                </td>
+                <td>
+                    <strong>Scope Chain:</strong><br>
+                    Local → Outer Function → Global → (No built-ins layer)<br>
+                    <small>JavaScript searches scope chain from inner to outer</small>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Local Scope</strong></td>
+                <td>
+                    <code>def func():<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;x = 10  # Local<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return x</code>
+                </td>
+                <td>
+                    <code>function func() {<br>
+                    &nbsp;&nbsp;let x = 10; // Local<br>
+                    &nbsp;&nbsp;return x;<br>
+                    }</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Enclosing/Outer Scope</strong></td>
+                <td>
+                    <code>def outer():<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;x = 10  # Enclosing<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def inner():<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return x  # Accesses enclosing x<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return inner</code>
+                </td>
+                <td>
+                    <code>function outer() {<br>
+                    &nbsp;&nbsp;let x = 10; // Outer<br>
+                    &nbsp;&nbsp;function inner() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return x; // Accesses outer x<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;return inner;<br>
+                    }</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Global Scope</strong></td>
+                <td>
+                    <code>x = 10  # Global<br>
+                    def func():<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return x  # Reads global x</code>
+                </td>
+                <td>
+                    <code>let x = 10; // Global<br>
+                    function func() {<br>
+                    &nbsp;&nbsp;return x; // Reads global x<br>
+                    }</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Built-in Scope</strong></td>
+                <td>
+                    <code>len([1, 2, 3])  # Built-in function</code><br>
+                    <small>Python has a built-in namespace with functions like <code>len</code>, <code>print</code>,
+                        <code>list</code>, etc.</small>
+                </td>
+                <td>
+                    <small>JavaScript has no separate built-in scope layer. Global objects like <code>console</code>,
+                        <code>Math</code>, etc., are properties of the global object (<code>window</code> in browsers,
+                        <code>global</code> in Node.js).</small>
+                </td>
+            </tr>
+            <tr>
+                <td><strong><code>global</code> Keyword</strong></td>
+                <td>
+                    <code>x = 10  # Global variable<br>
+                    <br>
+                    def func():<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;global x<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;x = 20  # Reassigns global x</code><br>
+                    <small>Required to reassign global variables from within a function. Without <code>global</code>,
+                        assignment creates a new local variable.</small>
+                </td>
+                <td>
+                    <small>No direct equivalent. Variables can be modified from nested scopes without a keyword, as long
+                        as they're not redeclared with <code>let</code>/<code>const</code>/<code>var</code>.</small><br>
+                    <code>let x = 10;<br>
+                    function func() {<br>
+                    &nbsp;&nbsp;x = 20; // Modifies global x<br>
+                    }</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong><code>nonlocal</code> Keyword</strong></td>
+                <td>
+                    <code>def outer():<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;x = 10  # Enclosing variable<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def inner():<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nonlocal x<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x = 20  # Modifies enclosing x<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;inner()<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return x  # Returns 20</code><br>
+                    <small>Required to reassign variables from an enclosing (non-global) scope. Without
+                        <code>nonlocal</code>, assignment creates a new local variable.</small>
+                </td>
+                <td>
+                    <small>No direct equivalent. JavaScript closures allow modification of outer scope variables
+                        directly without a keyword.</small><br>
+                    <code>function outer() {<br>
+                    &nbsp;&nbsp;let x = 10;<br>
+                    &nbsp;&nbsp;function inner() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;x = 20; // Modifies outer x<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;inner();<br>
+                    &nbsp;&nbsp;return x; // Returns 20<br>
+                    }</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Modify Global Variable</strong></td>
+                <td>
+                    <code>x = 10<br>
+                    def func():<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;global x  # Declare global<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;x = 20  # Modifies global x</code>
+                </td>
+                <td>
+                    <code>let x = 10;<br>
+                    function func() {<br>
+                    &nbsp;&nbsp;x = 20; // Modifies global x<br>
+                    }</code><br>
+                    <small>No keyword needed; just don't use
+                        <code>let</code>/<code>const</code>/<code>var</code></small>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Modify Enclosing Variable</strong></td>
+                <td>
+                    <code>def outer():<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;x = 10<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def inner():<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nonlocal x  # Declare nonlocal<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x = 20  # Modifies enclosing x<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;inner()</code>
+                </td>
+                <td>
+                    <code>function outer() {<br>
+                    &nbsp;&nbsp;let x = 10;<br>
+                    &nbsp;&nbsp;function inner() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;x = 20; // Modifies outer x<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;inner();<br>
+                    }</code><br>
+                    <small>No keyword needed</small>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Variable Declaration</strong></td>
+                <td>
+                    <code>x = 10  # Assignment creates variable</code><br>
+                    <small>No declaration keyword needed. First assignment creates the variable in current
+                        scope.</small>
+                </td>
+                <td>
+                    <code>let x = 10;   // Block-scoped<br>
+                    const y = 20; // Block-scoped, immutable<br>
+                    var z = 30;   // Function-scoped</code><br>
+                    <small>Always use <code>let</code>/<code>const</code> to avoid global pollution</small>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Block Scope</strong></td>
+                <td>
+                    <small>Python does <strong>not</strong> have block scope. Variables in <code>if</code>,
+                        <code>for</code>, <code>while</code> blocks are in the enclosing function/global
+                        scope.</small><br>
+                    <code>if True:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;x = 10<br>
+                    print(x)  # x is accessible (10)</code>
+                </td>
+                <td>
+                    <small>JavaScript has block scope with <code>let</code> and <code>const</code> (ES6+).</small><br>
+                    <code>if (true) {<br>
+                    &nbsp;&nbsp;let x = 10;<br>
+                    }<br>
+                    console.log(x); // ReferenceError</code><br>
+                    <small><code>var</code> is function-scoped, not block-scoped</small>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Closure</strong></td>
+                <td>
+                    <code>def outer(x):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def inner(y):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return x + y  # Remembers x<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return inner<br>
+                    <br>
+                    add5 = outer(5)<br>
+                    add5(10)  # Returns 15</code>
+                </td>
+                <td>
+                    <code>function outer(x) {<br>
+                    &nbsp;&nbsp;return function inner(y) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return x + y; // Remembers x<br>
+                    &nbsp;&nbsp;};<br>
+                    }<br>
+                    <br>
+                    const add5 = outer(5);<br>
+                    add5(10); // Returns 15</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Call Stack</strong></td>
+                <td colspan="2" style="text-align:left;">
+                    <strong>Both Python and JavaScript use a call stack:</strong>
+                    <ul style="margin:0.3em 0; padding-left:1.5em;">
+                        <li>When a function is called, a new frame is pushed onto the stack</li>
+                        <li>When a function returns, its frame is popped from the stack</li>
+                        <li>Stack overflow occurs when too many nested calls exhaust memory (e.g., infinite recursion)
+                        </li>
+                        <li>The stack traces error messages from bottom (first call) to top (error location)</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Hoisting</strong></td>
+                <td>
+                    <small>Python does <strong>not</strong> hoist variables or functions. They must be defined before
+                        use.</small><br>
+                    <code>print(x)  # NameError<br>
+                    x = 10</code>
+                </td>
+                <td>
+                    <small>JavaScript hoists <code>var</code> and <code>function</code> declarations (but not
+                        initializations).</small><br>
+                    <code>console.log(x); // undefined<br>
+                    var x = 10;<br>
+                    <br>
+                    // Function declarations hoisted<br>
+                    foo(); // Works<br>
+                    function foo() {}</code><br>
+                    <small><code>let</code>/<code>const</code> hoisted to "temporal dead zone"</small>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Temporal Dead Zone (TDZ)</strong></td>
+                <td>
+                    <small>Not applicable in Python</small>
+                </td>
+                <td>
+                    <code>console.log(x); // ReferenceError<br>
+                    let x = 10;</code><br>
+                    <small><code>let</code>/<code>const</code> are hoisted but not initialized. Accessing before
+                        declaration causes error.</small>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>this / self</strong></td>
+                <td>
+                    <code>class MyClass:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def method(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.x = 10  # Instance reference</code><br>
+                    <small><code>self</code> is explicit, passed as first parameter</small>
+                </td>
+                <td>
+                    <code>class MyClass {<br>
+                    &nbsp;&nbsp;method() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;this.x = 10; // Instance reference<br>
+                    &nbsp;&nbsp;}<br>
+                    }</code><br>
+                    <small><code>this</code> is implicit, context-dependent (can change with
+                        <code>call</code>/<code>apply</code>/<code>bind</code>)</small>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="margin:1em 0; padding:0.7em; background:#f6f6f6; border-left:4px solid #2196f3; font-size:0.98em;">
+        <strong>Key Differences:</strong>
+        <ul style="margin:0.3em 0; padding-left:1.5em;">
+            <li><strong>Python:</strong> LEGB scope resolution, explicit <code>global</code>/<code>nonlocal</code>
+                keywords, no block scope, no hoisting</li>
+            <li><strong>JavaScript:</strong> Scope chain, block scope with <code>let</code>/<code>const</code>, hoisting
+                with <code>var</code>, temporal dead zone</li>
+            <li>Both support closures and maintain call stacks for function execution</li>
+        </ul>
+    </div>
+
+    <h2>Object-Oriented Programming (OOP)</h2>
+    <table border="1" cellpadding="6" style="border-collapse:collapse; font-size:0.95em; margin-top:1em;">
+        <thead>
+            <tr style="background:#f0f0f0;">
+                <th style="width:20%;">Concept</th>
+                <th style="width:40%;">Python</th>
+                <th style="width:40%;">JavaScript (ES6+)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="background:#e8f5e9;">
+                <td colspan="3" style="text-align:center; font-weight:bold;">CLASS BASICS</td>
+            </tr>
+            <tr>
+                <td><strong>Class Definition</strong></td>
+                <td>
+                    <code>class Dog:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;pass</code>
+                </td>
+                <td>
+                    <code>class Dog {<br>
+                    }</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Constructor</strong></td>
+                <td>
+                    <code>class Dog:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def __init__(self, name):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.name = name</code><br>
+                    <small><code>__init__</code> is the constructor (initializer)</small>
+                </td>
+                <td>
+                    <code>class Dog {<br>
+                    &nbsp;&nbsp;constructor(name) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;this.name = name;<br>
+                    &nbsp;&nbsp;}<br>
+                    }</code><br>
+                    <small><code>constructor()</code> method</small>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Create Instance</strong></td>
+                <td>
+                    <code>dog = Dog("Rex")</code><br>
+                    <small>Call class like a function</small>
+                </td>
+                <td>
+                    <code>const dog = new Dog("Rex");</code><br>
+                    <small>Use <code>new</code> keyword</small>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Instance Method</strong></td>
+                <td>
+                    <code>class Dog:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def bark(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return "Woof!"</code><br>
+                    <small><code>self</code> is explicit first parameter</small>
+                </td>
+                <td>
+                    <code>class Dog {<br>
+                    &nbsp;&nbsp;bark() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return "Woof!";<br>
+                    &nbsp;&nbsp;}<br>
+                    }</code><br>
+                    <small><code>this</code> is implicit</small>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Class Variable (Static Property)</strong></td>
+                <td>
+                    <code>class Dog:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;species = "Canis familiaris"<br>
+                    <br>
+                    # Access:<br>
+                    Dog.species<br>
+                    dog.species  # Also works</code>
+                </td>
+                <td>
+                    <code>class Dog {<br>
+                    &nbsp;&nbsp;static species = "Canis familiaris";<br>
+                    }<br>
+                    <br>
+                    // Access:<br>
+                    Dog.species<br>
+                    // dog.species won't work</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Static Method</strong></td>
+                <td>
+                    <code>class Dog:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;@staticmethod<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def info():<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return "Dogs are mammals"</code><br>
+                    <small>No access to <code>self</code> or <code>cls</code></small>
+                </td>
+                <td>
+                    <code>class Dog {<br>
+                    &nbsp;&nbsp;static info() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return "Dogs are mammals";<br>
+                    &nbsp;&nbsp;}<br>
+                    }</code><br>
+                    <small>No access to <code>this</code></small>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Class Method</strong></td>
+                <td>
+                    <code>class Dog:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;@classmethod<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def from_str(cls, s):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name = s.split()[0]<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return cls(name)</code><br>
+                    <small>First param <code>cls</code> is the class itself</small>
+                </td>
+                <td>
+                    <code>class Dog {<br>
+                    &nbsp;&nbsp;static fromStr(s) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;const name = s.split(' ')[0];<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return new this(name);<br>
+                    &nbsp;&nbsp;}<br>
+                    }</code><br>
+                    <small>Use <code>this</code> to refer to class</small>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Property (Getter)</strong></td>
+                <td>
+                    <code>class Dog:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;@property<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def age_human(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return self.age * 7<br>
+                    <br>
+                    # Access as attribute:<br>
+                    dog.age_human  # No ()</code>
+                </td>
+                <td>
+                    <code>class Dog {<br>
+                    &nbsp;&nbsp;get ageHuman() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return this.age * 7;<br>
+                    &nbsp;&nbsp;}<br>
+                    }<br>
+                    <br>
+                    // Access as property:<br>
+                    dog.ageHuman // No ()</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Property (Setter)</strong></td>
+                <td>
+                    <code>class Dog:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;@property<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def name(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return self._name<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;@name.setter<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def name(self, value):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self._name = value.upper()</code>
+                </td>
+                <td>
+                    <code>class Dog {<br>
+                    &nbsp;&nbsp;get name() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return this._name;<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;set name(value) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;this._name = value.toUpperCase();<br>
+                    &nbsp;&nbsp;}<br>
+                    }</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Private Members</strong></td>
+                <td>
+                    <code>class Dog:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def __init__(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.__secret = 42  # Name mangled<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self._internal = 10  # Convention</code><br>
+                    <small>Single <code>_</code> is convention only. Double <code>__</code> causes name
+                        mangling.</small>
+                </td>
+                <td>
+                    <code>class Dog {<br>
+                    &nbsp;&nbsp;#secret = 42;  // Truly private (ES2022)<br>
+                    &nbsp;&nbsp;_internal = 10; // Convention only<br>
+                    }</code><br>
+                    <small><code>#</code> prefix for private fields (ES2022)</small>
+                </td>
+            </tr>
+            <tr style="background:#e8f5e9;">
+                <td colspan="3" style="text-align:center; font-weight:bold;">INHERITANCE</td>
+            </tr>
+            <tr>
+                <td><strong>Single Inheritance</strong></td>
+                <td>
+                    <code>class Animal:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def speak(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return "Sound"<br>
+                    <br>
+                    class Dog(Animal):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;pass</code>
+                </td>
+                <td>
+                    <code>class Animal {<br>
+                    &nbsp;&nbsp;speak() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return "Sound";<br>
+                    &nbsp;&nbsp;}<br>
+                    }<br>
+                    <br>
+                    class Dog extends Animal {<br>
+                    }</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Call Parent Constructor</strong></td>
+                <td>
+                    <code>class Dog(Animal):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def __init__(self, name):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super().__init__()<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.name = name</code>
+                </td>
+                <td>
+                    <code>class Dog extends Animal {<br>
+                    &nbsp;&nbsp;constructor(name) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;super();<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;this.name = name;<br>
+                    &nbsp;&nbsp;}<br>
+                    }</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Call Parent Method</strong></td>
+                <td>
+                    <code>class Dog(Animal):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def speak(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return super().speak() + " Woof!"</code>
+                </td>
+                <td>
+                    <code>class Dog extends Animal {<br>
+                    &nbsp;&nbsp;speak() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return super.speak() + " Woof!";<br>
+                    &nbsp;&nbsp;}<br>
+                    }</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Multiple Inheritance</strong></td>
+                <td>
+                    <code>class A:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;pass<br>
+                    <br>
+                    class B:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;pass<br>
+                    <br>
+                    class C(A, B):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;pass</code><br>
+                    <small>Python supports multiple inheritance</small>
+                </td>
+                <td>
+                    <small>JavaScript does <strong>not</strong> support multiple inheritance directly. Use mixins or
+                        composition pattern instead.</small><br>
+                    <code>// Mixin pattern:<br>
+                    const MixinA = Base => class extends Base {};<br>
+                    class C extends MixinA(B) {}</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Method Resolution Order (MRO)</strong></td>
+                <td>
+                    <code>class C(A, B):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;pass<br>
+                    <br>
+                    print(C.__mro__)<br>
+                    # or<br>
+                    print(C.mro())</code><br>
+                    <small>Uses C3 linearization algorithm. Left-to-right, depth-first search.</small>
+                </td>
+                <td>
+                    <small>JavaScript uses simple prototype chain. No MRO needed since no multiple
+                        inheritance.</small><br>
+                    <code>// Check prototype chain:<br>
+                    Object.getPrototypeOf(instance)</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Check Instance Type</strong></td>
+                <td>
+                    <code>isinstance(dog, Dog)  # True<br>
+                    isinstance(dog, Animal)  # True<br>
+                    type(dog) is Dog  # True</code>
+                </td>
+                <td>
+                    <code>dog instanceof Dog  // true<br>
+                    dog instanceof Animal  // true<br>
+                    dog.constructor === Dog  // true</code>
+                </td>
+            </tr>
+            <tr style="background:#e8f5e9;">
+                <td colspan="3" style="text-align:center; font-weight:bold;">DUNDER (MAGIC) METHODS</td>
+            </tr>
+            <tr>
+                <td><strong>String Representation</strong></td>
+                <td>
+                    <code>class Dog:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def __str__(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return f"Dog: {self.name}"<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def __repr__(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return f"Dog('{self.name}')"<br>
+                    <br>
+                    print(dog)  # Uses __str__<br>
+                    repr(dog)   # Uses __repr__</code>
+                </td>
+                <td>
+                    <code>class Dog {<br>
+                    &nbsp;&nbsp;toString() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return `Dog: ${this.name}`;<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;[Symbol.toStringTag]() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return `Dog('${this.name}')`;<br>
+                    &nbsp;&nbsp;}<br>
+                    }<br>
+                    String(dog) // Uses toString()</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Length</strong></td>
+                <td>
+                    <code>class MyList:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def __len__(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return len(self.items)<br>
+                    <br>
+                    len(my_list)  # Calls __len__</code>
+                </td>
+                <td>
+                    <small>No direct equivalent. Use a property or method:</small><br>
+                    <code>class MyList {<br>
+                    &nbsp;&nbsp;get length() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return this.items.length;<br>
+                    &nbsp;&nbsp;}<br>
+                    }</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Item Access (Indexing)</strong></td>
+                <td>
+                    <code>class MyList:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def __getitem__(self, key):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return self.items[key]<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def __setitem__(self, key, value):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.items[key] = value<br>
+                    <br>
+                    my_list[0]     # __getitem__<br>
+                    my_list[0] = 5 # __setitem__</code>
+                </td>
+                <td>
+                    <small>No direct equivalent. Use Proxy (advanced):</small><br>
+                    <code>const myList = new Proxy(obj, {<br>
+                    &nbsp;&nbsp;get(target, prop) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return target.items[prop];<br>
+                    &nbsp;&nbsp;},<br>
+                    &nbsp;&nbsp;set(target, prop, value) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;target.items[prop] = value;<br>
+                    &nbsp;&nbsp;}<br>
+                    });</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Iteration</strong></td>
+                <td>
+                    <code>class MyRange:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def __iter__(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.n = 0<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return self<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def __next__(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if self.n < self.max:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result = self.n<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.n += 1<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return result<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;raise StopIteration</code>
+                </td>
+                <td>
+                    <code>class MyRange {<br>
+                    &nbsp;&nbsp;*[Symbol.iterator]() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;let n = 0;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;while (n < this.max) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yield n++;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;}<br>
+                    }<br>
+                    <br>
+                    for (let val of myRange) {}</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Context Manager (with statement)</strong></td>
+                <td>
+                    <code>class File:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def __enter__(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Setup code<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return self<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def __exit__(self, exc_type, exc_val, tb):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Cleanup code<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pass<br>
+                    <br>
+                    with File() as f:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;pass  # Auto cleanup after</code>
+                </td>
+                <td>
+                    <small>No direct equivalent. Use try/finally or async context (TC39 proposal):</small><br>
+                    <code>const f = new File();<br>
+                    try {<br>
+                    &nbsp;&nbsp;// Use f<br>
+                    } finally {<br>
+                    &nbsp;&nbsp;f.close();<br>
+                    }</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Callable Object</strong></td>
+                <td>
+                    <code>class Multiplier:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def __init__(self, n):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.n = n<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def __call__(self, x):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return x * self.n<br>
+                    <br>
+                    m = Multiplier(5)<br>
+                    m(10)  # Returns 50</code>
+                </td>
+                <td>
+                    <small>No direct equivalent, but functions are objects:</small><br>
+                    <code>class Multiplier {<br>
+                    &nbsp;&nbsp;constructor(n) { this.n = n; }<br>
+                    &nbsp;&nbsp;call(x) { return x * this.n; }<br>
+                    }<br>
+                    const m = new Multiplier(5);<br>
+                    m.call(10); // Returns 50</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Comparison Operators</strong></td>
+                <td>
+                    <code>class Point:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def __eq__(self, other):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return self.x == other.x<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def __lt__(self, other):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return self.x < other.x<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;# __le__, __gt__, __ge__, __ne__</code><br>
+                    <small>Also: <code>__hash__</code> for use in sets/dicts</small>
+                </td>
+                <td>
+                    <small>No operator overloading. Use explicit methods or <code>valueOf()</code>:</small><br>
+                    <code>class Point {<br>
+                    &nbsp;&nbsp;equals(other) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return this.x === other.x;<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;valueOf() { return this.x; }<br>
+                    }</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Arithmetic Operators</strong></td>
+                <td>
+                    <code>class Vector:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def __add__(self, other):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return Vector(self.x + other.x)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def __mul__(self, scalar):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return Vector(self.x * scalar)<br>
+                    <br>
+                    v1 + v2  # Calls __add__<br>
+                    v1 * 5   # Calls __mul__</code><br>
+                    <small>Also: <code>__sub__</code>, <code>__truediv__</code>, <code>__floordiv__</code>,
+                        <code>__mod__</code>, <code>__pow__</code></small>
+                </td>
+                <td>
+                    <small>No operator overloading in JavaScript. Use explicit methods:</small><br>
+                    <code>class Vector {<br>
+                    &nbsp;&nbsp;add(other) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return new Vector(this.x + other.x);<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;multiply(scalar) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return new Vector(this.x * scalar);<br>
+                    &nbsp;&nbsp;}<br>
+                    }<br>
+                    v1.add(v2)<br>
+                    v1.multiply(5)</code>
+                </td>
+            </tr>
+            <tr style="background:#e8f5e9;">
+                <td colspan="3" style="text-align:center; font-weight:bold;">DECORATORS</td>
+            </tr>
+            <tr>
+                <td><strong>Function Decorator</strong></td>
+                <td>
+                    <code>def log(func):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def wrapper(*args, **kwargs):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Calling {func.__name__}")<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return func(*args, **kwargs)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return wrapper<br>
+                    <br>
+                    @log<br>
+                    def greet(name):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return f"Hello {name}"</code>
+                </td>
+                <td>
+                    <small>Decorators are Stage 3 proposal (not yet standard, but widely used via
+                        Babel/TypeScript):</small><br>
+                    <code>function log(target, context) {<br>
+                    &nbsp;&nbsp;return function(...args) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;console.log(`Calling ${context.name}`);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return target.apply(this, args);<br>
+                    &nbsp;&nbsp;};<br>
+                    }<br>
+                    <br>
+                    class A {<br>
+                    &nbsp;&nbsp;@log<br>
+                    &nbsp;&nbsp;greet() {}<br>
+                    }</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Class Decorator</strong></td>
+                <td>
+                    <code>def singleton(cls):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;instances = {}<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def get_instance(*args):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if cls not in instances:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instances[cls] = cls(*args)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return instances[cls]<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return get_instance<br>
+                    <br>
+                    @singleton<br>
+                    class Database:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;pass</code>
+                </td>
+                <td>
+                    <code>function singleton(cls) {<br>
+                    &nbsp;&nbsp;let instance;<br>
+                    &nbsp;&nbsp;return class extends cls {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;constructor(...args) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (instance) return instance;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super(...args);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instance = this;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;};<br>
+                    }<br>
+                    <br>
+                    @singleton<br>
+                    class Database {}</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Decorator with Arguments</strong></td>
+                <td>
+                    <code>def repeat(times):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def decorator(func):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;def wrapper(*args, **kwargs):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for _ in range(times):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;func(*args, **kwargs)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return wrapper<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return decorator<br>
+                    <br>
+                    @repeat(3)<br>
+                    def greet():<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;print("Hello")</code>
+                </td>
+                <td>
+                    <code>function repeat(times) {<br>
+                    &nbsp;&nbsp;return function(target, context) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return function(...args) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (let i = 0; i < times; i++) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target.apply(this, args);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;};<br>
+                    &nbsp;&nbsp;};<br>
+                    }<br>
+                    <br>
+                    class A {<br>
+                    &nbsp;&nbsp;@repeat(3)<br>
+                    &nbsp;&nbsp;greet() { console.log("Hello"); }<br>
+                    }</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Built-in Decorators</strong></td>
+                <td>
+                    <code>@property      # Getter<br>
+                    @staticmethod  # Static method<br>
+                    @classmethod   # Class method<br>
+                    @abstractmethod # Abstract (from abc)<br>
+                    @dataclass     # Auto-generate methods (from dataclasses)</code>
+                </td>
+                <td>
+                    <small>No standard built-in decorators yet. Popular frameworks provide their own:</small><br>
+                    <code>// Angular:<br>
+                    @Component()<br>
+                    <br>
+                    // MobX:<br>
+                    @observable<br>
+                    <br>
+                    // TypeScript experimental:<br>
+                    @sealed</code>
+                </td>
+            </tr>
+            <tr style="background:#e8f5e9;">
+                <td colspan="3" style="text-align:center; font-weight:bold;">ADVANCED CONCEPTS</td>
+            </tr>
+            <tr>
+                <td><strong>Abstract Base Class</strong></td>
+                <td>
+                    <code>from abc import ABC, abstractmethod<br>
+                    <br>
+                    class Animal(ABC):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;@abstractmethod<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def speak(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pass<br>
+                    <br>
+                    # Can't instantiate Animal</code>
+                </td>
+                <td>
+                    <small>No built-in abstract classes. Convention or manual check:</small><br>
+                    <code>class Animal {<br>
+                    &nbsp;&nbsp;speak() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;throw new Error("Must override");<br>
+                    &nbsp;&nbsp;}<br>
+                    }<br>
+                    <br>
+                    // Or check in constructor:<br>
+                    if (this.constructor === Animal) {<br>
+                    &nbsp;&nbsp;throw new Error("Cannot instantiate");<br>
+                    }</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Dataclass (Auto Properties)</strong></td>
+                <td>
+                    <code>from dataclasses import dataclass<br>
+                    <br>
+                    @dataclass<br>
+                    class Point:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;x: int<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;y: int<br>
+                    <br>
+                    # Auto __init__, __repr__, __eq__</code>
+                </td>
+                <td>
+                    <small>No built-in equivalent. TypeScript has similar features. Manually define or use
+                        libraries:</small><br>
+                    <code>class Point {<br>
+                    &nbsp;&nbsp;constructor(x, y) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;this.x = x;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;this.y = y;<br>
+                    &nbsp;&nbsp;}<br>
+                    }</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Metaclass</strong></td>
+                <td>
+                    <code>class Meta(type):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def __new__(mcs, name, bases, attrs):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Customize class creation<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return super().__new__(mcs, name, bases, attrs)<br>
+                    <br>
+                    class MyClass(metaclass=Meta):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;pass</code><br>
+                    <small>Control class creation itself</small>
+                </td>
+                <td>
+                    <small>No metaclasses. Use Proxy or modify prototype:</small><br>
+                    <code>function createClass() {<br>
+                    &nbsp;&nbsp;class MyClass {}<br>
+                    &nbsp;&nbsp;// Modify before returning<br>
+                    &nbsp;&nbsp;return MyClass;<br>
+                    }<br>
+                    <br>
+                    const MyClass = createClass();</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Slots (Memory Optimization)</strong></td>
+                <td>
+                    <code>class Point:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;__slots__ = ['x', 'y']<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def __init__(self, x, y):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.x = x<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.y = y</code><br>
+                    <small>Restricts attributes, saves memory</small>
+                </td>
+                <td>
+                    <small>No direct equivalent. JavaScript objects use property maps internally. Use TypeScript for
+                        type safety:</small><br>
+                    <code>class Point {<br>
+                    &nbsp;&nbsp;x: number;<br>
+                    &nbsp;&nbsp;y: number;<br>
+                    }</code>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Descriptor Protocol</strong></td>
+                <td>
+                    <code>class Descriptor:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def __get__(self, obj, type):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return self.value<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def __set__(self, obj, value):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.value = value<br>
+                    <br>
+                    class MyClass:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;attr = Descriptor()</code><br>
+                    <small>Low-level attribute access control</small>
+                </td>
+                <td>
+                    <small>Use <code>Object.defineProperty()</code> or getters/setters:</small><br>
+                    <code>Object.defineProperty(obj, 'attr', {<br>
+                    &nbsp;&nbsp;get() { return this._value; },<br>
+                    &nbsp;&nbsp;set(v) { this._value = v; }<br>
+                    });</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="margin:1em 0; padding:0.7em; background:#f6f6f6; border-left:4px solid #9c27b0; font-size:0.98em;">
+        <strong>Key OOP Differences:</strong>
+        <ul style="margin:0.3em 0; padding-left:1.5em;">
+            <li><strong>Python:</strong> Rich magic methods (dunder), multiple inheritance, decorators standard,
+                metaclasses, descriptors, <code>@property</code> built-in</li>
+            <li><strong>JavaScript:</strong> Prototype-based (class syntax is sugar), single inheritance only,
+                Symbol-based protocols, decorators experimental, no operator overloading</li>
+            <li>Python emphasizes explicit (<code>self</code>), JavaScript emphasizes prototypes and <code>this</code>
+                context</li>
+            <li>Both support modern OOP patterns, but Python offers more metaprogramming capabilities</li>
+        </ul>
+    </div>
+
+    <h2>JavaScript DOM Manipulation Methods</h2>
+    <table border="1" cellpadding="6" style="border-collapse:collapse; font-size:0.95em; margin-top:1em;">
+        <thead>
+            <tr style="background:#f0f0f0;">
+                <th>Category</th>
+                <th>Method/Property</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="5">Selecting Elements</td>
+                <td><code>document.querySelector(selector)</code></td>
+                <td>Returns first element matching CSS selector</td>
+                <td><code>document.querySelector('.btn')</code></td>
+            </tr>
+            <tr>
+                <td><code>document.querySelectorAll(selector)</code></td>
+                <td>Returns NodeList of all matching elements</td>
+                <td><code>document.querySelectorAll('.item')</code></td>
+            </tr>
+            <tr>
+                <td><code>document.getElementById(id)</code></td>
+                <td>Returns element by ID</td>
+                <td><code>document.getElementById('header')</code></td>
+            </tr>
+            <tr>
+                <td><code>document.getElementsByClassName(class)</code></td>
+                <td>Returns HTMLCollection by class name</td>
+                <td><code>document.getElementsByClassName('btn')</code></td>
+            </tr>
+            <tr>
+                <td><code>document.getElementsByTagName(tag)</code></td>
+                <td>Returns HTMLCollection by tag name</td>
+                <td><code>document.getElementsByTagName('div')</code></td>
+            </tr>
+
+            <tr>
+                <td rowspan="2">Creating Elements</td>
+                <td><code>document.createElement(tag)</code></td>
+                <td>Creates a new element</td>
+                <td><code>document.createElement('div')</code></td>
+            </tr>
+            <tr>
+                <td><code>element.cloneNode(deep)</code></td>
+                <td>Clones an element (deep=true includes children)</td>
+                <td><code>element.cloneNode(true)</code></td>
+            </tr>
+
+            <tr>
+                <td rowspan="3">Modifying Content</td>
+                <td><code>element.innerHTML</code></td>
+                <td>Gets/sets HTML content</td>
+                <td><code>el.innerHTML = '&lt;p&gt;Text&lt;/p&gt;'</code></td>
+            </tr>
+            <tr>
+                <td><code>element.textContent</code></td>
+                <td>Gets/sets text content (no HTML)</td>
+                <td><code>el.textContent = 'Hello'</code></td>
+            </tr>
+            <tr>
+                <td><code>element.innerText</code></td>
+                <td>Gets/sets visible text (respects CSS)</td>
+                <td><code>el.innerText = 'Visible text'</code></td>
+            </tr>
+
+            <tr>
+                <td rowspan="4">Modifying Attributes</td>
+                <td><code>element.setAttribute(name, value)</code></td>
+                <td>Sets an attribute</td>
+                <td><code>el.setAttribute('id', 'main')</code></td>
+            </tr>
+            <tr>
+                <td><code>element.getAttribute(name)</code></td>
+                <td>Gets an attribute value</td>
+                <td><code>el.getAttribute('href')</code></td>
+            </tr>
+            <tr>
+                <td><code>element.removeAttribute(name)</code></td>
+                <td>Removes an attribute</td>
+                <td><code>el.removeAttribute('disabled')</code></td>
+            </tr>
+            <tr>
+                <td><code>element.hasAttribute(name)</code></td>
+                <td>Checks if attribute exists</td>
+                <td><code>el.hasAttribute('data-id')</code></td>
+            </tr>
+
+            <tr>
+                <td rowspan="5">Modifying Classes</td>
+                <td><code>element.classList.add(class)</code></td>
+                <td>Adds a class</td>
+                <td><code>el.classList.add('active')</code></td>
+            </tr>
+            <tr>
+                <td><code>element.classList.remove(class)</code></td>
+                <td>Removes a class</td>
+                <td><code>el.classList.remove('hidden')</code></td>
+            </tr>
+            <tr>
+                <td><code>element.classList.toggle(class)</code></td>
+                <td>Toggles a class on/off</td>
+                <td><code>el.classList.toggle('open')</code></td>
+            </tr>
+            <tr>
+                <td><code>element.classList.contains(class)</code></td>
+                <td>Checks if class exists</td>
+                <td><code>el.classList.contains('active')</code></td>
+            </tr>
+            <tr>
+                <td><code>element.className</code></td>
+                <td>Gets/sets all classes as string</td>
+                <td><code>el.className = 'btn active'</code></td>
+            </tr>
+
+            <tr>
+                <td rowspan="2">Modifying Styles</td>
+                <td><code>element.style.property</code></td>
+                <td>Gets/sets inline CSS property</td>
+                <td><code>el.style.color = 'red'</code></td>
+            </tr>
+            <tr>
+                <td><code>window.getComputedStyle(element)</code></td>
+                <td>Gets computed CSS styles</td>
+                <td><code>getComputedStyle(el).width</code></td>
+            </tr>
+
+            <tr>
+                <td rowspan="5">Adding/Removing Elements</td>
+                <td><code>parent.appendChild(child)</code></td>
+                <td>Appends child as last child</td>
+                <td><code>parent.appendChild(newDiv)</code></td>
+            </tr>
+            <tr>
+                <td><code>parent.insertBefore(new, ref)</code></td>
+                <td>Inserts new element before reference</td>
+                <td><code>parent.insertBefore(el, refEl)</code></td>
+            </tr>
+            <tr>
+                <td><code>element.insertAdjacentHTML(pos, html)</code></td>
+                <td>Inserts HTML at position (beforebegin, afterbegin, beforeend, afterend)</td>
+                <td><code>el.insertAdjacentHTML('afterbegin', '&lt;p&gt;Hi&lt;/p&gt;')</code></td>
+            </tr>
+            <tr>
+                <td><code>parent.removeChild(child)</code></td>
+                <td>Removes a child element</td>
+                <td><code>parent.removeChild(child)</code></td>
+            </tr>
+            <tr>
+                <td><code>element.remove()</code></td>
+                <td>Removes element from DOM</td>
+                <td><code>el.remove()</code></td>
+            </tr>
+
+            <tr>
+                <td rowspan="2">Event Listeners</td>
+                <td><code>element.addEventListener(event, handler)</code></td>
+                <td>Adds event listener</td>
+                <td><code>btn.addEventListener('click', fn)</code></td>
+            </tr>
+            <tr>
+                <td><code>element.removeEventListener(event, handler)</code></td>
+                <td>Removes event listener</td>
+                <td><code>btn.removeEventListener('click', fn)</code></td>
+            </tr>
+
+            <tr>
+                <td rowspan="6">DOM Traversal</td>
+                <td><code>element.parentElement</code></td>
+                <td>Gets parent element</td>
+                <td><code>el.parentElement</code></td>
+            </tr>
+            <tr>
+                <td><code>element.children</code></td>
+                <td>Gets HTMLCollection of child elements</td>
+                <td><code>el.children</code></td>
+            </tr>
+            <tr>
+                <td><code>element.firstElementChild</code></td>
+                <td>Gets first child element</td>
+                <td><code>el.firstElementChild</code></td>
+            </tr>
+            <tr>
+                <td><code>element.lastElementChild</code></td>
+                <td>Gets last child element</td>
+                <td><code>el.lastElementChild</code></td>
+            </tr>
+            <tr>
+                <td><code>element.nextElementSibling</code></td>
+                <td>Gets next sibling element</td>
+                <td><code>el.nextElementSibling</code></td>
+            </tr>
+            <tr>
+                <td><code>element.previousElementSibling</code></td>
+                <td>Gets previous sibling element</td>
+                <td><code>el.previousElementSibling</code></td>
+            </tr>
+
+            <tr>
+                <td rowspan="2">Other</td>
+                <td><code>element.closest(selector)</code></td>
+                <td>Finds closest ancestor matching selector</td>
+                <td><code>el.closest('.container')</code></td>
+            </tr>
+            <tr>
+                <td><code>element.matches(selector)</code></td>
+                <td>Checks if element matches selector</td>
+                <td><code>el.matches('.active')</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Python Boolean Operators and Django ORM Field Lookups</h2>
+    <table border="1" cellpadding="6" style="border-collapse:collapse; font-size:0.95em; margin-top:1em;">
+        <thead>
+            <tr style="background:#f0f0f0;">
+                <th>Python Operator</th>
+                <th>Description</th>
+                <th>Django lookup / pattern</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>and / or / not</code> (logical)</td>
+                <td>Combine query conditions</td>
+                <td>Use <code>Q</code> objects combined with <code>&amp;</code>, <code>|</code>, <code>~</code></td>
+                <td><code>from django.db.models import Q<br>Book.objects.filter(Q(rating__gte=4) &amp; Q(is_bestselling=True))</code>
+                </td>
+            </tr>
+            <tr>
+                <td><code>==</code></td>
+                <td>Equality</td>
+                <td><code>field__exact</code> or <code>field__iexact</code></td>
+                <td><code>Book.objects.filter(title__exact='Dune')</code></td>
+            </tr>
+            <tr>
+                <td><code>!=</code></td>
+                <td>Inequality</td>
+                <td>Use <code>.exclude()</code> or <code>~Q(...)</code></td>
+                <td><code>Book.objects.exclude(title__exact='Dune')</code></td>
+            </tr>
+            <tr>
+                <td><code>&gt;, &gt;=, &lt;, &lt;=</code></td>
+                <td>Comparisons</td>
+                <td><code>field__gt</code>, <code>field__gte</code>, <code>field__lt</code>, <code>field__lte</code>
+                </td>
+                <td><code>Book.objects.filter(rating__gte=4)</code></td>
+            </tr>
+            <tr>
+                <td><code>in</code></td>
+                <td>Membership in a list/sequence</td>
+                <td><code>field__in</code></td>
+                <td><code>Book.objects.filter(id__in=[1,2,3])</code></td>
+            </tr>
+            <tr>
+                <td><code>is None / is not None</code></td>
+                <td>Check for NULL</td>
+                <td><code>field__isnull=True/False</code></td>
+                <td><code>Book.objects.filter(author__isnull=True)</code></td>
+            </tr>
+            <tr>
+                <td><code>in</code> (substring)</td>
+                <td>Substring membership</td>
+                <td><code>field__contains</code>, <code>field__icontains</code></td>
+                <td><code>Book.objects.filter(title__icontains='python')</code></td>
+            </tr>
+            <tr>
+                <td><code>startswith / endswith</code></td>
+                <td>Prefix/suffix match</td>
+                <td><code>field__startswith</code>, <code>field__istartswith</code>, <code>field__endswith</code>,
+                    <code>field__iendswith</code>
+                </td>
+                <td><code>Book.objects.filter(title__istartswith='The')</code></td>
+            </tr>
+            <tr>
+                <td><code>regex</code></td>
+                <td>Regular expression match</td>
+                <td><code>field__regex</code>, <code>field__iregex</code></td>
+                <td><code>Book.objects.filter(title__iregex=r"^The\\s")</code></td>
+            </tr>
+            <tr>
+                <td><code>range</code></td>
+                <td>Between two values</td>
+                <td><code>field__range</code></td>
+                <td><code>Book.objects.filter(rating__range=(2,4))</code></td>
+            </tr>
+        </tbody>
+    </table>
+    </table>
+
+    <h2>Bulk Django ORM Operations</h2>
+    <table border="1" cellpadding="6" style="border-collapse:collapse; font-size:0.95em; margin-top:1em;">
+        <thead>
+            <tr style="background:#f0f0f0;">
+                <th>Operation</th>
+                <th>What it does</th>
+                <th>Method / Example</th>
+                <th>Docs</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Delete multiple</td>
+                <td>Delete all records in a queryset at once.</td>
+                <td><code>Book.objects.filter(rating__lt=2).delete()</code></td>
+                <td><a href="https://docs.djangoproject.com/en/3.1/topics/db/queries/#deleting-objects">Deleting
+                        objects</a></td>
+            </tr>
+            <tr>
+                <td>Update multiple</td>
+                <td>Set a field value on every record in the queryset (runs a single UPDATE SQL).</td>
+                <td><code>Book.objects.filter(is_bestselling=True).update(rating=5)</code><br>Or use
+                    <code>bulk_update()</code> for many model instances.
+                </td>
+                <td><a href="https://docs.djangoproject.com/en/3.0/ref/models/querysets/#bulk-update">bulk_update /
+                        update</a></td>
+            </tr>
+            <tr>
+                <td>Create multiple</td>
+                <td>Insert many model instances in a single query (more efficient than saving one-by-one).</td>
+                <td><code>Book.objects.bulk_create([Book(title='A'), Book(title='B')])</code></td>
+                <td><a href="https://docs.djangoproject.com/en/3.0/ref/models/querysets/#bulk-create">bulk_create</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Django Admin</h2>
+    <table border="1" cellpadding="6" style="border-collapse:collapse; font-size:0.95em; margin-top:1em;">
+        <thead>
+            <tr style="background:#f0f0f0;">
+                <th>Type</th>
+                <th>Name</th>
+                <th>What it does</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="9" style="vertical-align:top;"><strong>Attributes</strong></td>
+                <td><code>list_display</code></td>
+                <td>Fields to display in the admin list view</td>
+                <td><code>list_display = ('title', 'author', 'published_date')</code></td>
+            </tr>
+            <tr>
+                <td><code>search_fields</code></td>
+                <td>Fields to search by</td>
+                <td><code>search_fields = ('title', 'content')</code></td>
+            </tr>
+            <tr>
+                <td><code>list_filter</code></td>
+                <td>Fields to filter by in the sidebar</td>
+                <td><code>list_filter = ('author', 'published_date')</code></td>
+            </tr>
+            <tr>
+                <td><code>ordering</code></td>
+                <td>Default ordering of objects</td>
+                <td><code>ordering = ('-published_date',)</code></td>
+            </tr>
+            <tr>
+                <td><code>readonly_fields</code></td>
+                <td>Fields that are read-only in the admin</td>
+                <td><code>readonly_fields = ('slug', 'created_at')</code></td>
+            </tr>
+            <tr>
+                <td><code>fields</code></td>
+                <td>Order and grouping of fields in the form</td>
+                <td><code>fields = ('title', 'author', 'content')</code></td>
+            </tr>
+            <tr>
+                <td><code>exclude</code></td>
+                <td>Fields to exclude from the form</td>
+                <td><code>exclude = ('slug',)</code></td>
+            </tr>
+            <tr>
+                <td><code>prepopulated_fields</code></td>
+                <td>Auto-fill fields (e.g., slug from title)</td>
+                <td><code>prepopulated_fields = {"slug": ("title",)}</code></td>
+            </tr>
+            <tr>
+                <td><code>date_hierarchy</code></td>
+                <td>Adds a date-based drilldown navigation</td>
+                <td><code>date_hierarchy = 'published_date'</code></td>
+            </tr>
+            <tr>
+                <td rowspan="5" style="vertical-align:top;"><strong>Methods</strong></td>
+                <td><code>get_queryset(self, request)</code></td>
+                <td>Customize the queryset for the admin</td>
+                <td><code>def get_queryset(self, request):<br>&nbsp;&nbsp;&nbsp;&nbsp;return super().get_queryset(request).filter(author=request.user)</code></td>
+            </tr>
+            <tr>
+                <td><code>save_model(self, request, obj, form, change)</code></td>
+                <td>Customize save behavior</td>
+                <td><code>def save_model(self, request, obj, form, change):<br>&nbsp;&nbsp;&nbsp;&nbsp;obj.author = request.user<br>&nbsp;&nbsp;&nbsp;&nbsp;super().save_model(request, obj, form, change)</code></td>
+            </tr>
+            <tr>
+                <td><code>delete_model(self, request, obj)</code></td>
+                <td>Customize delete behavior</td>
+                <td><code>def delete_model(self, request, obj):<br>&nbsp;&nbsp;&nbsp;&nbsp;# Custom logic<br>&nbsp;&nbsp;&nbsp;&nbsp;super().delete_model(request, obj)</code></td>
+            </tr>
+            <tr>
+                <td><code>get_readonly_fields(self, request, obj=None)</code></td>
+                <td>Dynamically set read-only fields</td>
+                <td><code>def get_readonly_fields(self, request, obj=None):<br>&nbsp;&nbsp;&nbsp;&nbsp;if obj:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return ['slug']<br>&nbsp;&nbsp;&nbsp;&nbsp;return []</code></td>
+            </tr>
+            <tr>
+                <td><code>formfield_for_foreignkey(self, db_field, request, **kwargs)</code></td>
+                <td>Customize foreign key fields</td>
+                <td><code>def formfield_for_foreignkey(self, db_field, request, **kwargs):<br>&nbsp;&nbsp;&nbsp;&nbsp;if db_field.name == 'author':<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kwargs['queryset'] = Author.objects.filter(active=True)<br>&nbsp;&nbsp;&nbsp;&nbsp;return super().formfield_for_foreignkey(db_field, request, **kwargs)</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>
+
+<!-- Major Git commands reference -->
+<h2>Major Git Terminal Commands</h2>
+<table border="1" cellpadding="6" style="border-collapse:collapse; font-size:0.95em; margin-top:1em;">
+    <thead>
+        <tr style="background:#f0f0f0;">
+            <th>Command</th>
+            <th>What it does</th>
+            <th>Example</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>git init</code></td>
+            <td>Initialize a new Git repository</td>
+            <td><code>git init</code></td>
+        </tr>
+        <tr>
+            <td><code>git clone &lt;repo-url&gt;</code></td>
+            <td>Clone a remote repository</td>
+            <td><code>git clone https://github.com/user/repo.git</code></td>
+        </tr>
+        <tr>
+            <td><code>git status</code></td>
+            <td>Show working tree status</td>
+            <td><code>git status</code></td>
+        </tr>
+        <tr>
+            <td><code>git add &lt;file&gt;</code></td>
+            <td>Stage changes for commit</td>
+            <td><code>git add prog_cheat_sheet.html</code></td>
+        </tr>
+        <tr>
+            <td><code>git commit -m &quot;msg&quot;</code></td>
+            <td>Commit staged changes with message</td>
+            <td><code>git commit -m "Add cheat sheet"</code></td>
+        </tr>
+        <tr>
+            <td><code>git commit --amend</code></td>
+            <td>Amend the most recent commit</td>
+            <td><code>git commit --amend -m "Fix message"</code></td>
+        </tr>
+        <tr>
+            <td><code>git log</code></td>
+            <td>Show commit history</td>
+            <td><code>git log --oneline --graph</code></td>
+        </tr>
+        <tr>
+            <td><code>git branch</code></td>
+            <td>List branches (or create with <code>git branch name</code>)</td>
+            <td><code>git branch feature-x</code></td>
+        </tr>
+        <tr>
+            <td><code>git checkout &lt;branch&gt;</code></td>
+            <td>Switch to a branch</td>
+            <td><code>git checkout main</code></td>
+        </tr>
+        <tr>
+            <td><code>git switch &lt;branch&gt;</code></td>
+            <td>Alternative to checkout for switching branches</td>
+            <td><code>git switch -c feature-x</code></td>
+        </tr>
+        <tr>
+            <td><code>git merge &lt;branch&gt;</code></td>
+            <td>Merge another branch into current</td>
+            <td><code>git merge feature-x</code></td>
+        </tr>
+        <tr>
+            <td><code>git rebase &lt;base&gt;</code></td>
+            <td>Reapply commits on top of another base</td>
+            <td><code>git rebase main</code></td>
+        </tr>
+        <tr>
+            <td><code>git fetch</code></td>
+            <td>Download objects and refs from remote</td>
+            <td><code>git fetch origin</code></td>
+        </tr>
+        <tr>
+            <td><code>git pull</code></td>
+            <td>Fetch + merge from remote</td>
+            <td><code>git pull origin main</code></td>
+        </tr>
+        <tr>
+            <td><code>git push</code></td>
+            <td>Push commits to remote</td>
+            <td><code>git push origin feature-x</code></td>
+        </tr>
+        <tr>
+            <td><code>git remote add &lt;name&gt; &lt;url&gt;</code></td>
+            <td>Add a remote repository</td>
+            <td><code>git remote add origin https://.../repo.git</code></td>
+        </tr>
+        <tr>
+            <td><code>git rm --cached &lt;file&gt;</code></td>
+            <td>Stop tracking a file but keep it locally</td>
+            <td><code>git rm --cached secret.txt</code></td>
+        </tr>
+        <tr>
+            <td><code>git reset --hard &lt;commit&gt;</code></td>
+            <td>Reset working tree to a commit (destructive)</td>
+            <td><code>git reset --hard HEAD~1</code></td>
+        </tr>
+        <tr>
+            <td><code>git revert &lt;commit&gt;</code></td>
+            <td>Create a new commit that undoes a previous commit</td>
+            <td><code>git revert abc1234</code></td>
+        </tr>
+        <tr>
+            <td><code>git stash</code></td>
+            <td>Temporarily save local changes</td>
+            <td><code>git stash save "WIP"</code></td>
+        </tr>
+        <tr>
+            <td><code>git stash pop</code></td>
+            <td>Apply and remove the most recent stash</td>
+            <td><code>git stash pop</code></td>
+        </tr>
+        <tr>
+            <td><code>git tag &lt;name&gt;</code></td>
+            <td>Create a tag for a commit</td>
+            <td><code>git tag v1.0</code></td>
+        </tr>
+        <tr>
+            <td><code>git diff</code></td>
+            <td>Show changes between commits, branches, or working tree</td>
+            <td><code>git diff HEAD~1..HEAD</code></td>
+        </tr>
+        <tr>
+            <td><code>git blame &lt;file&gt;</code></td>
+            <td>Show author and commit for each line</td>
+            <td><code>git blame prog_cheat_sheet.html</code></td>
+        </tr>
+        <tr>
+            <td><code>git cherry-pick &lt;commit&gt;</code></td>
+            <td>Apply a commit from another branch onto current</td>
+            <td><code>git cherry-pick abc1234</code></td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Django Models: Fields, Relationships, and Options</h2>
+<table border="1" cellpadding="6" style="border-collapse:collapse; font-size:0.95em; margin-top:1em;">
+    <thead>
+        <tr style="background:#f0f0f0;">
+            <th>Category</th>
+            <th>Field/Method</th>
+            <th>Description</th>
+            <th>Example</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Basic Field Types -->
+        <tr>
+            <td rowspan="13">Basic Field Types</td>
+            <td><code>models.CharField(max_length)</code></td>
+            <td>Text field with max length</td>
+            <td><code>title = models.CharField(max_length=200)</code></td>
+        </tr>
+        <tr>
+            <td><code>models.TextField()</code></td>
+            <td>Large text field</td>
+            <td><code>description = models.TextField()</code></td>
+        </tr>
+        <tr>
+            <td><code>models.IntegerField()</code></td>
+            <td>Integer field</td>
+            <td><code>age = models.IntegerField()</code></td>
+        </tr>
+        <tr>
+            <td><code>models.FloatField()</code></td>
+            <td>Floating-point number</td>
+            <td><code>price = models.FloatField()</code></td>
+        </tr>
+        <tr>
+            <td><code>models.DecimalField(max_digits, decimal_places)</code></td>
+            <td>Decimal number (better for money)</td>
+            <td><code>price = models.DecimalField(max_digits=10, decimal_places=2)</code></td>
+        </tr>
+        <tr>
+            <td><code>models.BooleanField()</code></td>
+            <td>True/False field</td>
+            <td><code>is_active = models.BooleanField(default=True)</code></td>
+        </tr>
+        <tr>
+            <td><code>models.DateField()</code></td>
+            <td>Date (without time)</td>
+            <td><code>birth_date = models.DateField()</code></td>
+        </tr>
+        <tr>
+            <td><code>models.DateTimeField()</code></td>
+            <td>Date and time</td>
+            <td><code>created_at = models.DateTimeField(auto_now_add=True)</code></td>
+        </tr>
+        <tr>
+            <td><code>models.TimeField()</code></td>
+            <td>Time (without date)</td>
+            <td><code>meeting_time = models.TimeField()</code></td>
+        </tr>
+        <tr>
+            <td><code>models.EmailField()</code></td>
+            <td>Email field with validation</td>
+            <td><code>email = models.EmailField(unique=True)</code></td>
+        </tr>
+        <tr>
+            <td><code>models.URLField()</code></td>
+            <td>URL field with validation</td>
+            <td><code>website = models.URLField(blank=True)</code></td>
+        </tr>
+        <tr>
+            <td><code>models.SlugField()</code></td>
+            <td>URL-friendly string (alphanumeric + hyphens)</td>
+            <td><code>slug = models.SlugField(unique=True, db_index=True)</code></td>
+        </tr>
+        <tr>
+            <td><code>models.FileField(upload_to)</code></td>
+            <td>File upload field</td>
+            <td><code>document = models.FileField(upload_to='documents/')</code></td>
+        </tr>
+
+        <!-- Relationship Fields -->
+        <tr>
+            <td rowspan="3">Relationship Fields</td>
+            <td><code>models.ForeignKey(Model, on_delete)</code></td>
+            <td>Many-to-one relationship</td>
+            <td><code>author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='books')</code></td>
+        </tr>
+        <tr>
+            <td><code>models.OneToOneField(Model, on_delete)</code></td>
+            <td>One-to-one relationship</td>
+            <td><code>profile = models.OneToOneField(User, on_delete=models.CASCADE)</code></td>
+        </tr>
+        <tr>
+            <td><code>models.ManyToManyField(Model)</code></td>
+            <td>Many-to-many relationship</td>
+            <td><code>tags = models.ManyToManyField(Tag, related_name='posts')</code></td>
+        </tr>
+
+        <!-- Lazy Relationships -->
+        <tr>
+            <td rowspan="3">Lazy Relationships<br>(string references)</td>
+            <td><code>'ModelName'</code></td>
+            <td>Circular dependency (reference model as string)</td>
+            <td><code>last_buyer = models.ForeignKey('User', on_delete=models.CASCADE)</code></td>
+        </tr>
+        <tr>
+            <td><code>'self'</code></td>
+            <td>Self-referential relationship</td>
+            <td><code>friends = models.ManyToManyField('self')</code></td>
+        </tr>
+        <tr>
+            <td><code>'app.ModelName'</code></td>
+            <td>Cross-app relationship (other Django app)</td>
+            <td><code>product = models.ForeignKey('store.Product', on_delete=models.CASCADE)</code></td>
+        </tr>
+
+        <!-- on_delete Options -->
+        <tr>
+            <td rowspan="6">on_delete Options<br>(for ForeignKey/OneToOne)</td>
+            <td><code>models.CASCADE</code></td>
+            <td>Delete this object when referenced object is deleted</td>
+            <td><code>on_delete=models.CASCADE</code></td>
+        </tr>
+        <tr>
+            <td><code>models.PROTECT</code></td>
+            <td>Prevent deletion of referenced object</td>
+            <td><code>on_delete=models.PROTECT</code></td>
+        </tr>
+        <tr>
+            <td><code>models.SET_NULL</code></td>
+            <td>Set field to NULL when referenced object is deleted</td>
+            <td><code>on_delete=models.SET_NULL, null=True</code></td>
+        </tr>
+        <tr>
+            <td><code>models.SET_DEFAULT</code></td>
+            <td>Set field to default value</td>
+            <td><code>on_delete=models.SET_DEFAULT, default=1</code></td>
+        </tr>
+        <tr>
+            <td><code>models.DO_NOTHING</code></td>
+            <td>Do nothing (can cause DB errors)</td>
+            <td><code>on_delete=models.DO_NOTHING</code></td>
+        </tr>
+        <tr>
+            <td><code>models.SET(value/callable)</code></td>
+            <td>Set field to specified value or callable result</td>
+            <td><code>on_delete=models.SET(get_default_author)</code></td>
+        </tr>
+
+        <!-- Common Field Options -->
+        <tr>
+            <td rowspan="10">Common Field Options</td>
+            <td><code>null=True</code></td>
+            <td>Allow NULL in database</td>
+            <td><code>middle_name = models.CharField(max_length=50, null=True)</code></td>
+        </tr>
+        <tr>
+            <td><code>blank=True</code></td>
+            <td>Allow empty in forms/validation</td>
+            <td><code>bio = models.TextField(blank=True)</code></td>
+        </tr>
+        <tr>
+            <td><code>default</code></td>
+            <td>Default value for field</td>
+            <td><code>status = models.CharField(max_length=20, default='draft')</code></td>
+        </tr>
+        <tr>
+            <td><code>unique=True</code></td>
+            <td>Field must be unique across table</td>
+            <td><code>email = models.EmailField(unique=True)</code></td>
+        </tr>
+        <tr>
+            <td><code>db_index=True</code></td>
+            <td>Create database index for faster queries</td>
+            <td><code>slug = models.SlugField(db_index=True)</code></td>
+        </tr>
+        <tr>
+            <td><code>choices</code></td>
+            <td>Limit field to specific values</td>
+            <td><code>status = models.CharField(max_length=2, choices=[('DR', 'Draft'), ('PB', 'Published')])</code>
+            </td>
+        </tr>
+        <tr>
+            <td><code>validators</code></td>
+            <td>List of validators for field</td>
+            <td><code>rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])</code></td>
+        </tr>
+        <tr>
+            <td><code>auto_now=True</code></td>
+            <td>Update to current time on every save (DateTimeField)</td>
+            <td><code>updated_at = models.DateTimeField(auto_now=True)</code></td>
+        </tr>
+        <tr>
+            <td><code>auto_now_add=True</code></td>
+            <td>Set to current time on creation only (DateTimeField)</td>
+            <td><code>created_at = models.DateTimeField(auto_now_add=True)</code></td>
+        </tr>
+        <tr>
+            <td><code>related_name</code></td>
+            <td>Reverse relation name (for ForeignKey/ManyToMany)</td>
+            <td><code>author = models.ForeignKey(Author, related_name='books')</code></td>
+        </tr>
+
+        <!-- Model Methods -->
+        <tr>
+            <td rowspan="5">Model Methods</td>
+            <td><code>def __str__(self)</code></td>
+            <td>String representation of object</td>
+            <td><code>def __str__(self): return self.title</code></td>
+        </tr>
+        <tr>
+            <td><code>def save(self, *args, **kwargs)</code></td>
+            <td>Override save behavior</td>
+            <td><code>def save(self, *args, **kwargs):<br>&nbsp;&nbsp;&nbsp;&nbsp;self.slug = slugify(self.title)<br>&nbsp;&nbsp;&nbsp;&nbsp;super().save(*args, **kwargs)</code>
+            </td>
+        </tr>
+        <tr>
+            <td><code>def get_absolute_url(self)</code></td>
+            <td>Return canonical URL for object</td>
+            <td><code>def get_absolute_url(self):<br>&nbsp;&nbsp;&nbsp;&nbsp;return reverse('post-detail', args=[self.slug])</code>
+            </td>
+        </tr>
+        <tr>
+            <td><code>def clean(self)</code></td>
+            <td>Custom validation logic</td>
+            <td><code>def clean(self):<br>&nbsp;&nbsp;&nbsp;&nbsp;if self.start_date &gt; self.end_date:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;raise ValidationError("Start must be before end")</code>
+            </td>
+        </tr>
+        <tr>
+            <td><code>Model.objects.create(**kwargs)</code></td>
+            <td>Create and save object in one step</td>
+            <td><code>Book.objects.create(title='Django', author=author)</code></td>
+        </tr>
+
+        <!-- Meta Options -->
+        <tr>
+            <td rowspan="6">Meta Options<br>(inside <code>class Meta</code>)</td>
+            <td><code>ordering = [...]</code></td>
+            <td>Default query ordering</td>
+            <td><code>class Meta:<br>&nbsp;&nbsp;&nbsp;&nbsp;ordering = ['-created_at', 'title']</code></td>
+        </tr>
+        <tr>
+            <td><code>verbose_name</code></td>
+            <td>Human-readable name (singular)</td>
+            <td><code>verbose_name = "book entry"</code></td>
+        </tr>
+        <tr>
+            <td><code>verbose_name_plural</code></td>
+            <td>Human-readable name (plural)</td>
+            <td><code>verbose_name_plural = "book entries"</code></td>
+        </tr>
+        <tr>
+            <td><code>db_table</code></td>
+            <td>Custom database table name</td>
+            <td><code>db_table = 'my_custom_table'</code></td>
+        </tr>
+        <tr>
+            <td><code>unique_together</code></td>
+            <td>Enforce unique combination of fields</td>
+            <td><code>unique_together = [['author', 'title']]</code></td>
+        </tr>
+        <tr>
+            <td><code>indexes</code></td>
+            <td>Define database indexes</td>
+            <td><code>indexes = [models.Index(fields=['title', '-created_at'])]</code></td>
+        </tr>
+
+        <!-- Common Validators -->
+        <tr>
+            <td rowspan="6">Common Validators<br>(from django.core.validators)</td>
+            <td><code>MinValueValidator(min)</code></td>
+            <td>Minimum value for numeric field</td>
+            <td><code>validators=[MinValueValidator(1)]</code></td>
+        </tr>
+        <tr>
+            <td><code>MaxValueValidator(max)</code></td>
+            <td>Maximum value for numeric field</td>
+            <td><code>validators=[MaxValueValidator(100)]</code></td>
+        </tr>
+        <tr>
+            <td><code>MinLengthValidator(min)</code></td>
+            <td>Minimum string length</td>
+            <td><code>validators=[MinLengthValidator(5)]</code></td>
+        </tr>
+        <tr>
+            <td><code>MaxLengthValidator(max)</code></td>
+            <td>Maximum string length</td>
+            <td><code>validators=[MaxLengthValidator(50)]</code></td>
+        </tr>
+        <tr>
+            <td><code>EmailValidator()</code></td>
+            <td>Validate email format</td>
+            <td><code>validators=[EmailValidator()]</code></td>
+        </tr>
+        <tr>
+            <td><code>RegexValidator(regex, message)</code></td>
+            <td>Validate against regex pattern</td>
+            <td><code>validators=[RegexValidator(r'^[0-9]*$', 'Only digits allowed')]</code></td>
+        </tr>
+    </tbody>
+</table>
+
+<div style="margin:1em 0; padding:0.7em; background:#f6f6f6; border-left:4px solid #4caf50; font-size:0.98em;">
+    <strong>Note:</strong> Always use <code>null=True</code> for database NULL and <code>blank=True</code> for form
+    validation. For relationships, <code>related_name</code> allows reverse lookups (e.g.,
+    <code>author.books.all()</code>). Remember to run <code>python manage.py makemigrations</code> and
+    <code>python manage.py migrate</code> after model changes.
+</div>
+
+</body>
+
+</html>
