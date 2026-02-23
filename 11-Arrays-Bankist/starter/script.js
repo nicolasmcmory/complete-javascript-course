@@ -319,6 +319,4 @@ const fetchWeights = breeds
   .filter(breed => breed.activities.includes('fetch'))
   .map(breed => breed.averageWeight);
 const heaviestFetchBreed = Math.max(...fetchWeights);
-
-console.log(fetchWeights);
 console.log(heaviestFetchBreed);
