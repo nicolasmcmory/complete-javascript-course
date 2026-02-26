@@ -222,7 +222,6 @@ btnSort.addEventListener('click', e => {
   displayMovements(currentAccount.movements, true);
 });
 
-
 ///////////////////////////////////////
 // Coding Challenge #5
 
@@ -230,7 +229,6 @@ btnSort.addEventListener('click', e => {
 Julia and Kate are still studying dogs. This time they are want to figure out if the dogs in their are eating too much or too little food.
 
 - Formula for calculating recommended food portion: recommendedFood = weight ** 0.75 * 28. (The result is in grams of food, and the weight needs to be in kg)
-- Eating too much means the dog's current food portion is larger than the recommended portion, and eating too little is the opposite.
 - Eating an okay amount means the dog's current food portion is within a range 10% above and below the recommended portion (see hint).
 
 HINT 1: Use many different tools to solve these challenges, you can use the summary lecture to choose between them 😉
@@ -246,8 +244,31 @@ const dogs = [
 ];
 
 // 1. Loop over the array containing dog objects, and for each dog, calculate the recommended food portion (recFood) and add it to the object as a new property. Do NOT create a new array, simply loop over the array (We never did this before, so think about how you can do this without creating a new array).
-// 2. Find Sarah's dog and log to the console whether it's eating too much or too little. HINT: Some dogs have multiple users, so you first need to find Sarah in the owners array, and so this one is a bit tricky (on purpose) 🤓
+const addRecFood = dogs => {
+  dogs.forEach(dog => {
+    dog.recFood = Math.floor(dog.weight ** 0.75 * 28);
+    console.log(dog);
+  });
+};
+
+addRecFood(dogs);
+
+// 2. Find Sarah's dog and log to the console whether it's eating too much or too little. HINT: Some dogs have multiple users, so you first need to find Sarah in the owners array, and so this one is a bit tricky (on purpose) 🤓. Eating too much means the dog's current food portion is larger than the recommended portion, and eating too little is the opposite.
+// FILTER sarah dog -> TEST currFood > recFood?
+function checkFood(owner, dogs) {
+  const targetDog = dogs.find(dog => dog.owners.includes(owner));
+  const result =
+    targetDog.curFood > targetDog.recFood
+      ? `${owner}'s dog's current food intake is greater than recommended.`
+      : `${owner}'s dog's current food intake is less than recommended.`;
+  console.log(result);
+}
+
+checkFood('Sarah', dogs);
+
 // 3. Create an array containing all owners of dogs who eat too much (ownersTooMuch) and an array with all owners of dogs who eat too little (ownersTooLittle).
+
+
 // 4. Log a string to the console for each array created in 3., like this: "Matilda and Alice and Bob's dogs eat too much!" and "Sarah and John and Michael's dogs eat too little!"
 // 5. Log to the console whether there is ANY dog eating EXACTLY the amount of food that is recommended (just true or false)
 // 6. Log to the console whether ALL of the dogs are eating an OKAY amount of food (just true or false)
