@@ -257,22 +257,62 @@ addRecFood(dogs);
 // FILTER sarah dog -> TEST currFood > recFood?
 function checkFood(owner, dogs) {
   const targetDog = dogs.find(dog => dog.owners.includes(owner));
-  const result =
-    targetDog.curFood > targetDog.recFood
-      ? `${owner}'s dog's current food intake is greater than recommended.`
-      : `${owner}'s dog's current food intake is less than recommended.`;
+  const result = `${owner}'s dog eats to ${targetDog.curFood > targetDog.recFood ? 'much' : 'little'}.`;
   console.log(result);
 }
 
 checkFood('Sarah', dogs);
 
 // 3. Create an array containing all owners of dogs who eat too much (ownersTooMuch) and an array with all owners of dogs who eat too little (ownersTooLittle).
+const getOwners = (dogs, type) => {
+  const owners = dogs
+    .filter(dog => {
+      if (type == 'overeat') return dog.curFood > dog.recFood;
+      else if (type == 'undereat') return dog.curFood < dog.recFood;
+    })
+    .flatMap(dog => dog.owners);
+  return owners;
+};
 
-
+const ownersTooMuch = getOwners(dogs, 'overeat');
+const ownersTooLittle = getOwners(dogs, 'undereat');
 // 4. Log a string to the console for each array created in 3., like this: "Matilda and Alice and Bob's dogs eat too much!" and "Sarah and John and Michael's dogs eat too little!"
+function printNames(names, type) {
+  let str = '';
+  if (type == 'overeat') {
+    str = names.join(' and ') + "'s dogs eat too much!";
+  } else if (type == 'undereat') {
+    str = names.join(' and ') + "'s dogs eat too little!";
+  }
+  console.log(str);
+}
+printNames(ownersTooMuch, 'overeat');
+printNames(ownersTooLittle, 'undereat');
+
 // 5. Log to the console whether there is ANY dog eating EXACTLY the amount of food that is recommended (just true or false)
+const justEnough = dogs.some(dog => dog.curFood === dog.recFood);
+console.log(justEnough);
+
 // 6. Log to the console whether ALL of the dogs are eating an OKAY amount of food (just true or false)
+function dogOk(dog) {
+  return dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.1;
+}
+
+const justOk = dogs.every(dogOk);
+console.log(justOk);
+
 // 7. Create an array containing the dogs that are eating an OKAY amount of food (try to reuse the condition used in 6.)
+const dogsOk = dogs.filter(dogOk);
+console.log(...dogsOk);
+
 // 8. Group the dogs into the following 3 groups: 'exact', 'too-much' and 'too-little', based on whether they are eating too much, too little or the exact amount of food, based on the recommended food portion.
+let groupedDogs = Object.groupBy(dogs, dog => dog.curFood === dog.recFood);
+console.log(groupedDogs);
+
 // 9. Group the dogs by the number of owners they have
+groupedDogs = Object.groupBy(dogs, dog => dog.owners.length);
+console.log(groupedDogs);
+
 // 10. Sort the dogs array by recommended food portion in an ascending order. Make sure to NOT mutate the original array!
+const sortedDogs = dogs.toSorted((a, b) => a.recFood - b.recFood);
+console.log(sortedDogs);
