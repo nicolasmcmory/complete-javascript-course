@@ -49,7 +49,7 @@ const account2 = {
   locale: 'en-US',
 };
 
-const accounts = [account, account2];
+const accounts = [account1, account2];
 
 /////////////////////////////////////////////////
 // Elements
@@ -230,15 +230,15 @@ btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
 
-  account = accounts.find(
+  account1 = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
-  console.log(account);
+  console.log(account1);
 
-  if (account?.pin === +inputLoginPin.value) {
+  if (account1?.pin === +inputLoginPin.value) {
     // Display UI and message
     labelWelcome.textContent = `Welcome back, ${
-      account.owner.split(' ')[0]
+      account1.owner.split(' ')[0]
     }`;
     containerApp.style.opacity = 100;
 
@@ -256,7 +256,7 @@ btnLogin.addEventListener('click', function (e) {
     // console.log(locale);
 
     labelDate.textContent = new Intl.DateTimeFormat(
-      account.locale,
+      account1.locale,
       options
     ).format(now);
 
@@ -276,7 +276,7 @@ btnLogin.addEventListener('click', function (e) {
     timer = startLogOutTimer();
 
     // Update UI
-    updateUI(account);
+    updateUI(account1);
   }
 });
 
@@ -291,19 +291,19 @@ btnTransfer.addEventListener('click', function (e) {
   if (
     amount > 0 &&
     receiverAcc &&
-    account.balance >= amount &&
-    receiverAcc?.username !== account.username
+    account1.balance >= amount &&
+    receiverAcc?.username !== account1.username
   ) {
     // Doing the transfer
-    account.movements.push(-amount);
+    account1.movements.push(-amount);
     receiverAcc.movements.push(amount);
 
     // Add transfer date
-    account.movementsDates.push(new Date().toISOString());
+    account1.movementsDates.push(new Date().toISOString());
     receiverAcc.movementsDates.push(new Date().toISOString());
 
     // Update UI
-    updateUI(account);
+    updateUI(account1);
 
     // Reset timer
     clearInterval(timer);
@@ -316,16 +316,16 @@ btnLoan.addEventListener('click', function (e) {
 
   const amount = Math.floor(inputLoanAmount.value);
 
-  if (amount > 0 && account.movements.some(mov => mov >= amount * 0.1)) {
+  if (amount > 0 && account1.movements.some(mov => mov >= amount * 0.1)) {
     setTimeout(function () {
       // Add movement
-      account.movements.push(amount);
+      account1.movements.push(amount);
 
       // Add loan date
-      account.movementsDates.push(new Date().toISOString());
+      account1.movementsDates.push(new Date().toISOString());
 
       // Update UI
-      updateUI(account);
+      updateUI(account1);
 
       // Reset timer
       clearInterval(timer);
@@ -339,11 +339,11 @@ btnClose.addEventListener('click', function (e) {
   e.preventDefault();
 
   if (
-    inputCloseUsername.value === account.username &&
-    +inputClosePin.value === account.pin
+    inputCloseUsername.value === account1.username &&
+    +inputClosePin.value === account1.pin
   ) {
     const index = accounts.findIndex(
-      acc => acc.username === account.username
+      acc => acc.username === account1.username
     );
     console.log(index);
     // .indexOf(23)
@@ -365,7 +365,7 @@ btnSort.addEventListener('click', function (e) {
   // displayMovements(currentAccount.movements, !sorted);
 
   // FIX:
-  displayMovements(account, !sorted);
+  displayMovements(account1, !sorted);
   sorted = !sorted;
 });
 
