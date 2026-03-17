@@ -9,6 +9,7 @@
 
 // DIFFERENT DATA! Contains movement dates, currency and locale
 
+// Global variables
 const account1 = {
   owner: 'Jonas Schmedtmann',
   movements: [200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300],
@@ -50,6 +51,7 @@ const account2 = {
 };
 
 const accounts = [account1, account2];
+let currentAccount, timer;
 
 /////////////////////////////////////////////////
 // Elements
@@ -81,6 +83,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
+// Helpers
 // Update date and time to current on page load
 function updateDateTime() {
   const date = new Date(Date.now());
@@ -91,6 +94,39 @@ function updateDateTime() {
     hour: '2-digit',
     minute: '2-digit',
   });
+}
+
+// Timeout
+function wait(func, milisecs, ...args) {
+  setTimeout(func, milisecs, ...args);
+}
+
+// Display fns
+function updateTimer(time) {
+  const min = time.getMinutes().toString().padStart(2, '0');
+  const sec = time.getSeconds().toString().padStart(2, '0');
+  labelTimer.textContent = `${min}:${sec}`;
+}
+
+// Start logout timer with default time of 5 minutes
+function startLogoutTimer(startTime = 300) {
+  const time = new Date(startTime * 1000);
+  updateTimer(time);
+
+  // Call the timer every second
+  const timer = setInterval(() => {
+    time.setSeconds(time.getSeconds() - 1);
+    updateTimer(time);
+
+    // When time is up, stop timer and log out user
+    if (time.getTime() <= 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = 'Log in to get started';
+      containerApp.style.opacity = 0;
+    }
+  }, 1000);
+
+  return timer;
 }
 
 const displayMovements = function (acc, sort = false) {
@@ -179,6 +215,7 @@ const createUsernames = function (accs) {
       .join('');
   });
 };
+
 createUsernames(accounts);
 
 const updateUI = function (acc) {
@@ -197,16 +234,18 @@ const updateUI = function (acc) {
 
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
 
+  // Start logout timer, if there is one already, clear it
+  if (timer) clearInterval(timer);
+  timer = startLogoutTimer();
+
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value,
   );
-  console.log(currentAccount);
 
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
     // Display UI and message
@@ -262,7 +301,7 @@ btnLoan.addEventListener('click', function (e) {
     currentAccount.movementsDates.push(new Date().toISOString());
 
     // Update UI
-    updateUI(currentAccount);
+    wait(updateUI, 5000, currentAccount);
   }
   inputLoanAmount.value = '';
 });
