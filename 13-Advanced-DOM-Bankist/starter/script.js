@@ -1,5 +1,6 @@
 'use strict';
 
+
 ///////////////////////////////////////
 // Global variables
 const modal = document.querySelector('.modal');
@@ -72,7 +73,7 @@ const element = el('div', {
 
 // document.querySelector('.header').append(element);
 // Templates
-const tplCookieMessage = document
+/* const tplCookieMessage = document
   .querySelector('template#cookie-tpl')
   .content.cloneNode(true);
 
@@ -91,3 +92,29 @@ acceptCookiesBtn.addEventListener('click', e => {
 });
 
 header.append(tplCookieMessage);
+
+console.log(
+  typeof Number(document.querySelector('.nav__logo').dataset.yearOfConfection),
+);
+
+const section1 = document.querySelector('#section--1');
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+
+btnScrollTo.addEventListener('click', () => {
+  section1.scrollIntoView({ behavior: 'smooth' });
+}); */
+
+const h1 = document.querySelector('h1');
+
+function popUp(message) {
+  return function inner() {
+    alert(message);
+  };
+};
+
+const popupMessage = 'hello';
+const popUpHandler = popUp(popupMessage)
+
+h1.addEventListener('mouseenter', popUpHandler);
+
+setTimeout(() => h1.removeEventListener('mouseenter', popUpHandler), 3000);
