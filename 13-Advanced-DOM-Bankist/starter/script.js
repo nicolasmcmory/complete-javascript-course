@@ -1,14 +1,15 @@
 'use strict';
 
-
 ///////////////////////////////////////
 // Global variables
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const navButtons = document.querySelectorAll('.nav__link');
+const navBar = document.querySelector('.nav__links');
 
-// Business logic
+// BUSINESS LOGIC
 // Modal window
 const openModal = function (e) {
   e.preventDefault();
@@ -22,7 +23,20 @@ const closeModal = function (e) {
   overlay.classList.add('hidden');
 };
 
-// Event handlers
+// Scroll navigation
+const scrollTo = function (e) {
+  const event = /**@type {Event} */ (e);
+  const target = /**@type {HTMLAnchorElement} */ (event.target);
+
+  event.preventDefault();
+
+  const id = target.getAttribute('href');
+
+  document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+};
+
+// EVENT HANDLERS
+// Modal control
 const controlModal = function () {
   btnsOpenModal.forEach(btn => {
     btn.addEventListener('click', openModal);
@@ -38,10 +52,23 @@ const controlModal = function () {
   });
 };
 
+// Scroll control
+function controlNavButtonsScrollTo() {
+  navBar.addEventListener('click', function (e) {
+    if (
+      e.target instanceof Element &&
+      e.target.classList.contains('nav__link')
+    ) {
+      scrollTo(e);
+    }
+  });
+}
+
 // Drivers
 // Main driver function
 function init() {
   controlModal();
+  controlNavButtonsScrollTo();
 }
 
 init();
@@ -110,11 +137,16 @@ function popUp(message) {
   return function inner() {
     alert(message);
   };
-};
+}
 
 const popupMessage = 'hello';
-const popUpHandler = popUp(popupMessage)
+const popUpHandler = popUp(popupMessage);
 
 h1.addEventListener('mouseenter', popUpHandler);
 
 setTimeout(() => h1.removeEventListener('mouseenter', popUpHandler), 3000);
+
+// rgb(255, 255, 255)
+const randInt = (min, max) => Math.floor(Math.random() * (max - min) + 1 + min);
+const randColor = () =>
+  `rgb(${randInt(100, 255)},${randInt(0, 255)},${randInt(200, 255)})`;
