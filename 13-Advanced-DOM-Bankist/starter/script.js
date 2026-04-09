@@ -131,7 +131,7 @@ btnScrollTo.addEventListener('click', () => {
   section1.scrollIntoView({ behavior: 'smooth' });
 }); */
 
-const h1 = document.querySelector('h1');
+/* const h1 = document.querySelector('h1');
 
 function popUp(message) {
   return function inner() {
@@ -149,4 +149,8 @@ setTimeout(() => h1.removeEventListener('mouseenter', popUpHandler), 3000);
 // rgb(255, 255, 255)
 const randInt = (min, max) => Math.floor(Math.random() * (max - min) + 1 + min);
 const randColor = () =>
-  `rgb(${randInt(100, 255)},${randInt(0, 255)},${randInt(200, 255)})`;
+  `rgb(${randInt(100, 255)},${randInt(0, 255)},${randInt(200, 255)})`; */
+
+// Tabbed component
+const tabs = document.querySelectorAll('.operations__tab');
+const tabContainers = document.querySelectorAll('.operations__tab-container')
