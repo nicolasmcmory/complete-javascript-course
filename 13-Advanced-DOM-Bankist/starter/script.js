@@ -162,7 +162,7 @@ const classOperationsTab = 'operations__tab';
 const classActiveContent = 'operations__content--active';
 const classContentPre = 'operations__content--';
 
-// Tab event handlers, added to parent element to avoid runtime latency drop with looping assignment via event delegation
+// Event delegation handle: added to parent element to avoid runtime latency drop with looping assignment via event delegation
 tabsContainer.addEventListener('click', e => {
   const clicked = e.target.closest(`.${classOperationsTab}`);
 
