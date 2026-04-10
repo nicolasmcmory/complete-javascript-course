@@ -164,10 +164,14 @@ const classContentPre = 'operations__content--';
 
 // Event delegation handle: added to parent element to avoid runtime latency drop with looping assignment via event delegation
 tabsContainer.addEventListener('click', e => {
+  d;
   const clicked = e.target.closest(`.${classOperationsTab}`);
 
-  // Guard clause
+  // Guard clause, if clicked event is not tab
   if (!clicked) return;
+
+  // Reassignment for clarity
+  const tab = clicked;
 
   // Remove active class from all tabs and tab contents
   tabs.forEach(tab => {
@@ -178,8 +182,8 @@ tabsContainer.addEventListener('click', e => {
   });
 
   // Add active class to tab and tab content
-  clicked.classList.add(classActiveTab);
-  const tabNo = parseInt(clicked.dataset.tab);
+  tab.classList.add(classActiveTab);
+  const tabNo = parseInt(tab.dataset.tab);
   document
     .querySelector(`.${classContentPre}${tabNo}`)
     .classList.add(classActiveContent);
