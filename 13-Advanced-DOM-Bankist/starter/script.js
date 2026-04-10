@@ -162,8 +162,8 @@ const classOperationsTab = 'operations__tab';
 const classActiveContent = 'operations__content--active';
 const classContentPre = 'operations__content--';
 
-// Driver fns
-function handleTabClick(e) {
+// Tab event handlers, added to parent element to avoid runtime latency drop with looping assignment via event delegation
+tabsContainer.addEventListener('click', e => {
   const clicked = e.target.closest(`.${classOperationsTab}`);
 
   // Guard clause
@@ -183,7 +183,4 @@ function handleTabClick(e) {
   document
     .querySelector(`.${classContentPre}${tabNo}`)
     .classList.add(classActiveContent);
-}
-
-// Tab event handlers, added to parent element to avoid runtime latency drop with looping assignment via event delegation
-tabsContainer.addEventListener('click', handleTabClick);
+});
