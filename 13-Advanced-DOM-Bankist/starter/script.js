@@ -164,7 +164,6 @@ const classContentPre = 'operations__content--';
 
 // Event delegation handle: added to parent element to avoid runtime latency drop with looping assignment via event delegation
 tabsContainer.addEventListener('click', e => {
-  d;
   const clicked = e.target.closest(`.${classOperationsTab}`);
 
   // Guard clause, if clicked event is not tab
