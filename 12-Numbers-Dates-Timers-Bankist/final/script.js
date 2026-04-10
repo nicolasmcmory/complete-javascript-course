@@ -361,7 +361,7 @@ btnClose.addEventListener('click', function (e) {
 let sorted = false;
 btnSort.addEventListener('click', function (e) {
   e.preventDefault();
-  // BUG in video:
+  // Problem in video:
   // displayMovements(currentAccount.movements, !sorted);
 
   // FIX:

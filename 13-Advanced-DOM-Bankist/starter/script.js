@@ -152,5 +152,38 @@ const randColor = () =>
   `rgb(${randInt(100, 255)},${randInt(0, 255)},${randInt(200, 255)})`; */
 
 // Tabbed component
+const tabsContainer = document.querySelector('.operations__tab-container');
 const tabs = document.querySelectorAll('.operations__tab');
-const tabContainers = document.querySelectorAll('.operations__tab-container')
+const tabsContent = document.querySelectorAll('.operations__content');
+
+// JSDoc classes
+const classActiveTab = 'operations__tab--active';
+const classOperationsTab = 'operations__tab';
+const classActiveContent = 'operations__content--active';
+const classContentPre = 'operations__content--';
+
+// Driver fns
+function handleTabClick(e) {
+  const clicked = e.target.closest(`.${classOperationsTab}`);
+
+  // Guard clause
+  if (!clicked) return;
+
+  // Remove active class from all tabs and tab contents
+  tabs.forEach(tab => {
+    tab.classList.remove(classActiveTab);
+  });
+  tabsContent.forEach(content => {
+    content.classList.remove(classActiveContent);
+  });
+
+  // Add active class to tab and tab content
+  clicked.classList.add(classActiveTab);
+  const tabNo = parseInt(clicked.dataset.tab);
+  document
+    .querySelector(`.${classContentPre}${tabNo}`)
+    .classList.add(classActiveContent);
+}
+
+// Tab event handlers, added to parent element to avoid runtime latency drop with looping assignment via event delegation
+tabsContainer.addEventListener('click', handleTabClick);
