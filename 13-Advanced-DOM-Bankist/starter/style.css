@@ -142,6 +142,7 @@ img {
 }
 
 .nav__item {
+  transition: 0.3s;
   margin-left: 4rem;
 }
 
@@ -168,6 +169,10 @@ img {
   color: inherit;
   background-color: var(--color-primary-darker);
   color: #333;
+}
+
+.nav__item--occluded{
+  opacity: 0.5;
 }
 
 /* HEADER */

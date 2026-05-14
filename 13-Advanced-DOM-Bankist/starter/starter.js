@@ -187,3 +187,8 @@ tabsContainer.addEventListener('click', e => {
     .querySelector(`.${classContentPre}${tabNo}`)
     .classList.add(classActiveContent);
 });
+
+// General DOM listener that takes advantage of event bubbling to handle all events of a certain type on the page with a single handler on the document element using import function delegation
+document.addEventListener('click', function (e) {
+  console.log(e.target);
+});
