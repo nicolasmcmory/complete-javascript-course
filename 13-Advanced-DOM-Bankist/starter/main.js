@@ -17,5 +17,5 @@ const eventListener = function (event) {
 };
 
 // Event listener assingments
-document.addEventListener('mouseover', eventListener);
-document.addEventListener('mouseout', eventListener);
+// document.addEventListener('mouseover', eventListener);
+// document.addEventListener('mouseout', eventListener);

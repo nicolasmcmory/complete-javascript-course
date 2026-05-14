@@ -1,3 +1,4 @@
+/* Nav item focus hover is better implemented using css, this pattern can be repeated by using a generalized class */
 // Global selectors
 const NAV_ITEM_SELECTOR = "[data-action='emphasize-nav-item']";
 

@@ -38,7 +38,9 @@ body {
   padding: 15rem 3rem;
   border-top: 1px solid #ddd;
 
-  transition: transform 1s, opacity 1s;
+  transition:
+    transform 1s,
+    opacity 1s;
 }
 
 .section--hidden {
@@ -146,6 +148,16 @@ img {
   margin-left: 4rem;
 }
 
+.nav__links:hover .nav__item,
+.nav__links:focus-within .nav__item {
+  opacity: 0.5;
+}
+
+.nav__links .nav__item:hover,
+.nav__links .nav__item:focus-within {
+  opacity: 1;
+}
+
 .nav__link:link,
 .nav__link:visited {
   font-size: 1.7rem;
@@ -171,7 +183,7 @@ img {
   color: #333;
 }
 
-.nav__item--occluded{
+.nav__item--occluded {
   opacity: 0.5;
 }
 
