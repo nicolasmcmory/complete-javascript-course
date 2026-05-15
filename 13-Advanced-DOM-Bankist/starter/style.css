@@ -124,12 +124,28 @@ img {
   width: 100%;
   padding: 0 6rem;
   z-index: 100;
+  transition: background-color 0.3s ease;
 }
 
-/* nav and stickly class at the same time */
-.nav.sticky {
+.sticky {
   position: fixed;
-  background-color: rgba(255, 255, 255, 0.95);
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  animation: slideInNav 0.7s ease-out;
+}
+
+@keyframes slideInNav {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .nav__logo {
