@@ -224,11 +224,23 @@ const imgTargets = document.querySelectorAll('img[data-src]');
 const revealImg = function (entries, observer) {
   const [entry] = entries;
   console.log(entry);
+
+  if (!entry.isIntersecting) return;
+
+  // Replace src img with new img
+  entry.target.src = entry.target.dataset.src;
+
+  entry.target.addEventListener('load', entry => {
+    entry.target.classList.remove('lazy-img');
+  });
+
+  observer.unobserve(entry.target);
 };
 
 // Load intersection observer
 const imgObserver = new IntersectionObserver(revealImg, {
   root: null,
+  rootMargin: '200px',
   threshold: 0,
 });
 
