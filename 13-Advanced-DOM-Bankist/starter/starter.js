@@ -192,3 +192,44 @@ tabsContainer.addEventListener('click', e => {
 document.addEventListener('click', function (e) {
   console.log(e.target);
 });
+
+// Intersection Observer API for auto-revealing sections on scroll
+const allSections = document.querySelectorAll('.section');
+const hiddenClass = 'section--hidden';
+
+const revealSection = function (entries, observer) {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+
+    entry.target.classList.remove(hiddenClass);
+    observer.unobserve(entry.target);
+  });
+};
+
+const observer = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.15,
+});
+
+// Adding event listeners to all sections and hiding them on page load
+allSections.forEach(section => {
+  observer.observe(section);
+  section.classList.add(hiddenClass);
+});
+
+// Lazy loading images with Intersection Observer API
+const imgTargets = document.querySelectorAll('img[data-src]');
+
+// Callback fn
+const revealImg = function (entries, observer) {
+  const [entry] = entries;
+  console.log(entry);
+};
+
+// Load intersection observer
+const imgObserver = new IntersectionObserver(revealImg, {
+  root: null,
+  threshold: 0,
+});
+
+imgTargets.forEach(imgTarget => imgObserver.observe(imgTarget));
