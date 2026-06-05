@@ -188,16 +188,11 @@ tabsContainer.addEventListener('click', e => {
     .classList.add(classActiveContent);
 });
 
-// General DOM listener that takes advantage of event bubbling to handle all events of a certain type on the page with a single handler on the document element using import function delegation
-document.addEventListener('click', function (e) {
-  console.log(e.target);
-});
-
 // Intersection Observer API for auto-revealing sections on scroll
 const allSections = document.querySelectorAll('.section');
 const hiddenClass = 'section--hidden';
 
-const revealSection = function (entries, observer) {
+/* const revealSection = function (entries, observer) {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
 
@@ -223,7 +218,6 @@ const imgTargets = document.querySelectorAll('img[data-src]');
 // Callback fn
 const revealImg = function (entries, observer) {
   const [entry] = entries;
-  console.log(entry);
 
   if (!entry.isIntersecting) return;
 
@@ -244,4 +238,56 @@ const imgObserver = new IntersectionObserver(revealImg, {
   threshold: 0,
 });
 
-imgTargets.forEach(imgTarget => imgObserver.observe(imgTarget));
+imgTargets.forEach(imgTarget => imgObserver.observe(imgTarget)); */
+
+// Slider component
+// Arrows - Add/remove css classes
+// Get elements from DOM
+const leftArrow = document.querySelector('.slider__btn.slider__btn--left');
+const rightArrow = document.querySelector('.slider__btn.slider__btn--right');
+const slides = document.querySelectorAll('.slide');
+
+const maxSlide = slides.length; // Maximum slide index
+let curSlide = 0; // Current slide index
+
+// Slide movement function
+const moveSlides = function (position) {
+  console.log(curSlide);
+  if (Math.abs(curSlide) === maxSlide) curSlide = 0;
+
+  // Move slides to the left or right depending on the position argument
+  slides.forEach((slide, i) => {
+    switch (position) {
+      case 'start':
+        slide.style.transform = `translateX(${100 * i}%)`;
+        break;
+      case 'right':
+        slide.style.transform = `translateX(${100 * (i - curSlide)}%)`;
+        break;
+      case 'left':
+        slide.style.transform = `translateX(${100 * (i + curSlide)}%)`;
+        break;
+    }
+  });
+};
+
+// Slide control functions
+// Go right or left depending on the position argument and move slides accordingly
+const slideRight = function () {
+  curSlide++;
+  moveSlides('right');
+};
+
+const slideLeft = function () {
+  curSlide--;
+  moveSlides('left');
+};
+
+// Initial slide positioning
+moveSlides('start');
+
+// Event listening
+leftArrow.addEventListener('click', slideLeft);
+rightArrow.addEventListener('click', slideRight);
+
+// Dots - Add/remove css classes
