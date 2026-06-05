@@ -246,6 +246,7 @@ imgTargets.forEach(imgTarget => imgObserver.observe(imgTarget)); */
 const leftArrow = document.querySelector('.slider__btn.slider__btn--left');
 const rightArrow = document.querySelector('.slider__btn.slider__btn--right');
 const slides = document.querySelectorAll('.slide');
+const dotsContainer = document.querySelector('.dots');
 
 const maxSlide = slides.length; // Maximum slide index
 let curSlide = 0; // Current slide index
@@ -271,6 +272,16 @@ const moveSlides = function (position) {
   });
 };
 
+// Create dots for each slide
+const createDots = function () {
+  slides.forEach((_, i) =>
+    dotsContainer.insertAdjacentHTML(
+      'beforeend',
+      `<button class="dots__dot" data-slide="${i}"></button>`,
+    ),
+  );
+};
+
 // Slide control functions
 // Go right or left depending on the position argument and move slides accordingly
 const slideRight = function () {
@@ -283,11 +294,20 @@ const slideLeft = function () {
   moveSlides('left');
 };
 
-// Initial slide positioning
+// Initial states
 moveSlides('start');
+createDots();
 
 // Event listening
+// Click event listeners for arrows
 leftArrow.addEventListener('click', slideLeft);
 rightArrow.addEventListener('click', slideRight);
+dotsContainer.addEventListener('click', )
+
+// Key event listener for slide control
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') slideRight();
+  if (e.key === 'ArrowLeft') slideLeft();
+});
 
 // Dots - Add/remove css classes
