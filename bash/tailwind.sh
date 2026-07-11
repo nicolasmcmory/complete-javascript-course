@@ -1,0 +1,1 @@
+tailwindcss -i "./15-Mapty/starter/static/css/input.css" -o "./15-Mapty/starter/static/css/output.css" --watch
