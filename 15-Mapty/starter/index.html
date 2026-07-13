@@ -47,12 +47,17 @@
         class="logo" />
 
       <ul class="workouts">
+        <!-- POI Workout form -->
         <form
+          @submit.prevent="customSubmit"
           x-show="showForm"
+          x-effect="showForm && $nextTick(() => $refs.kms.focus())"
           class="form">
           <div class="form__row">
             <label class="form__label">Type</label>
-            <select class="form__input form__input--type">
+            <select
+              x-model="type"
+              class="form__input form__input--type">
               <option value="running">Running</option>
               <option value="cycling">Cycling</option>
             </select>
@@ -60,27 +65,38 @@
           <div class="form__row">
             <label class="form__label">Distance</label>
             <input
-              x-effect="showForm && $nextTick(() => $el.focus())"
+              x-ref="kms"
+              x-model="distance"
               class="form__input form__input--distance"
               placeholder="km" />
           </div>
           <div class="form__row">
             <label class="form__label">Duration</label>
             <input
+              x-model="duration"
               class="form__input form__input--duration"
               placeholder="min" />
           </div>
-          <div class="form__row">
+          <div
+            x-show="type === 'running'"
+            class="form__row">
             <label class="form__label">Cadence</label>
             <input
+              x-model="cadence"
               class="form__input form__input--cadence"
               placeholder="step/min" />
           </div>
-          <div class="form__row--hidden form__row">
+          <div
+            x-show="type === 'cycling'"
+            class="form__row">
             <label class="form__label">Elev Gain</label>
             <input
+              x-model="elevation"
               class="form__input form__input--elevation"
               placeholder="meters" />
+          </div>
+          <div x-show="errorMsg">
+            <p x-text="errorMsg"></p>
           </div>
           <button class="form__btn">OK</button>
         </form>

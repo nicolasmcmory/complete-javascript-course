@@ -1,7 +1,5 @@
 'use strict';
-
-// POI Helpers
-// POI Leaflet
+// POI Functions
 // Starting Leaflet API
 const startMap = (lat, lng) => {
   // Leaflet implementation
@@ -14,39 +12,64 @@ const startMap = (lat, lng) => {
   return map;
 };
 
-// Add marker to map
-const addMarker = function (map, msg, openForm) {
-  // Add marker to leaflet map from click event, see leaflet docs
-  map.on('click', (e) => {
-    // Location from event
-    const { lat, lng } = e.latlng;
-
-    // Popup config
-    const popup = L.popup({
-      maxWidth: 250,
-      minWidth: 100,
-      autoClose: false,
-      closeOnClick: false,
-      className: 'running-popup',
-      content: msg,
-    });
-
-    // Express marker
-    L.marker([lat, lng]).addTo(map).bindPopup(popup).openPopup();
-
-    // Open form using callback
-    openForm();
-  });
-};
-
-// Main driver fn for Mapty app, using Alpine.js for state management
+// Mapty Alpine component
 const mapty = () => ({
-  showForm: false,
-  lat: null,
-  lng: null,
+  // General params
   errorMsg: null,
-  popupMsg: 'Popup message',
   map: null,
+  clickedLat: null,
+  clickedLng: null,
+
+  // Form state and input values
+  showForm: false,
+  currentMarker: null,
+  type: 'running',
+  distance: '',
+  duration: '',
+  cadence: '',
+  elevation: '',
+  popupMsg: 'New workout',
+
+  // Actions
+  customSubmit() {
+    // Add workout to workouts store
+    const workout = this.buildWorkout();
+    if (!workout) return;
+    Alpine.store('workouts').add(workout);
+    this.updateMarkerPopup(workout);
+    this.resetForm();
+  },
+
+  buildWorkout() {
+    const distance = Number(this.distance);
+    const duration = Number(this.duration);
+    const typeSpec = this.type === 'running' ? { cadence: Number(this.cadence) } : { elevation: Number(this.elevation) };
+    if (!distance || !duration || !typeSpec.cadence || !typeSpec.elevation) {
+      this.errorMsg = 'Please enter valid numbers';
+      alert(this.errorMsg);
+      return null;
+    }
+    return {
+      type: this.type,
+      distance,
+      duration,
+      lat: this.clickedLat,
+      lng: this.clickedLng,
+      ...typeSpec,
+    };
+  },
+
+  updateMarkerPopup(workout) {
+    const type = workout.type.charAt(0).toUpperCase() + workout.type.slice(1);
+    this.currentMarker.setPopupContent(`${type} - ${workout.distance}kms`);
+  },
+
+  resetForm() {
+    this.showForm = false;
+    this.distance = this.duration = this.cadence = this.elevation = '';
+  },
+
+  // Lifecycle
   init() {
     // Geolocate and initialize leaflet
     navigator.geolocation.getCurrentPosition(
@@ -54,14 +77,32 @@ const mapty = () => ({
         try {
           // Get coords from browser
           const { latitude, longitude } = position.coords;
-          this.lat = latitude;
-          this.lng = longitude;
 
           // Load map on current location
-          this.map = startMap(this.lat, this.lng);
+          this.map = startMap(latitude, longitude);
 
           // Handle add marker event
-          addMarker(this.map, this.popupMsg, () => {
+          // Add marker to leaflet map from click event, see leaflet docs
+          this.map.on('click', (e) => {
+            // Location from event and var assignment for persisting
+            const { lat, lng } = e.latlng;
+            this.clickedLat = lat;
+            this.clickedLng = lng;
+
+            // Popup config
+            const popup = L.popup({
+              maxWidth: 250,
+              minWidth: 100,
+              autoClose: false,
+              closeOnClick: false,
+              className: 'running-popup',
+              content: this.popupMsg,
+            });
+
+            // Express marker
+            this.currentMarker = L.marker([lat, lng]).addTo(this.map).bindPopup(popup).openPopup();
+
+            // Open form
             this.showForm = true;
           });
 
@@ -77,6 +118,15 @@ const mapty = () => ({
   },
 });
 
+// POI Alpine initializer
 document.addEventListener('alpine:init', () => {
+  // Define Alpine store
+  Alpine.store('workouts', {
+    workouts: [],
+    add(workout) {
+      this.workouts.push(workout);
+    },
+  });
+  // Mapty component
   Alpine.data('mapty', mapty);
 });
