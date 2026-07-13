@@ -19,6 +19,17 @@
     <link
       rel="stylesheet"
       href="./static/css/output.css" />
+    <!-- import leaflet most recent stable version -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin="" />
+    <script
+      defer
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""></script>
     <script
       defer
       src="./static/js/script.js"></script>
@@ -28,7 +39,7 @@
 
     <title>mapty // Map your workouts</title>
   </head>
-  <body>
+  <body x-data="mapty">
     <div class="sidebar">
       <img
         src="logo.png"
@@ -36,7 +47,9 @@
         class="logo" />
 
       <ul class="workouts">
-        <form class="hidden form">
+        <form
+          x-show="showForm"
+          class="form">
           <div class="form__row">
             <label class="form__label">Type</label>
             <select class="form__input form__input--type">
@@ -47,6 +60,7 @@
           <div class="form__row">
             <label class="form__label">Distance</label>
             <input
+              x-effect="showForm && $nextTick(() => $el.focus())"
               class="form__input form__input--distance"
               placeholder="km" />
           </div>
@@ -131,10 +145,12 @@
       </p>
     </div>
 
-    <div
-      id="map"
-      x-data="mapty">
-      <p x-text="lat + ', ' +  lng"></p>
+    <div id="map">
+      <template x-if="errorMsg">
+        <h1
+          x-text="errorMsg"
+          class="font-bold text-9xl text-center"></h1>
+      </template>
     </div>
   </body>
 </html>
