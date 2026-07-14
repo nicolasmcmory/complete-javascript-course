@@ -1,4 +1,6 @@
 'use strict';
+// TODO instead of using locaStorage -> @beforeunload.window="if (ratings.length > 0) { $event.preventDefault(); $event.returnValue = ''; }"
+
 // POI Regular fns
 // Starting Leaflet API
 const startMap = (lat, lng) => {
