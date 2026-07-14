@@ -1,5 +1,5 @@
 'use strict';
-// POI Functions
+// POI Regular fns
 // Starting Leaflet API
 const startMap = (lat, lng) => {
   // Leaflet implementation
@@ -12,7 +12,7 @@ const startMap = (lat, lng) => {
   return map;
 };
 
-// Mapty Alpine component
+// POI Alpine components
 const mapty = () => ({
   // General params
   errorMsg: null,
@@ -30,32 +30,53 @@ const mapty = () => ({
   elevation: '',
   popupMsg: 'New workout',
 
-  // Actions
-  customSubmit() {
-    // Add workout to workouts store
-    const workout = this.buildWorkout();
-    if (!workout) return;
-    Alpine.store('workouts').add(workout);
-    this.updateMarkerPopup(workout);
-    this.resetForm();
-  },
-
+  // POI Actions
   buildWorkout() {
-    const distance = Number(this.distance);
-    const duration = Number(this.duration);
-    const typeSpec = this.type === 'running' ? { cadence: Number(this.cadence) } : { elevation: Number(this.elevation) };
-    if (!distance || !duration || !typeSpec.cadence || !typeSpec.elevation) {
+    const isRunning = this.type === 'running';
+    const typeSpecKey = isRunning ? 'cadence' : 'elevation';
+
+    // Helper, validate by coercion to number and positive check
+    const validate = (val) => {
+      const n = Number(val);
+      return n && n > 0;
+    };
+
+    // Values
+    const values = {
+      distance: this.distance,
+      duration: this.duration,
+      lat: this.clickedLat,
+      lng: this.clickedLng,
+      [typeSpecKey]: isRunning ? this.cadence : this.elevation,
+    };
+
+    // Form validation
+    if (!Object.values(values).every(validate)) {
       this.errorMsg = 'Please enter valid numbers';
       alert(this.errorMsg);
       return null;
     }
+
+    const distance = Number(values.distance);
+    const duration = Number(values.duration);
+
+    // POI Alpine.store.workouts.workoutObj
     return {
+      id: crypto.randomUUID(),
       type: this.type,
       distance,
       duration,
-      lat: this.clickedLat,
-      lng: this.clickedLng,
-      ...typeSpec,
+      pace: (duration / distance).toFixed(1),
+      lat: values.lat,
+      lng: values.lng,
+      moveToMarker: () => {
+        this.map.closePopup();
+        this.map.setView([values.lat, values.lng], 13, {
+          animate: true,
+          duration: 1,
+        });
+      },
+      [typeSpecKey]: Number(values[typeSpecKey]),
     };
   },
 
@@ -67,6 +88,15 @@ const mapty = () => ({
   resetForm() {
     this.showForm = false;
     this.distance = this.duration = this.cadence = this.elevation = '';
+  },
+
+  customSubmit() {
+    // Add workout to workouts store
+    const workout = this.buildWorkout();
+    if (!workout) return;
+    Alpine.store('workouts').add(workout);
+    this.updateMarkerPopup(workout);
+    this.resetForm();
   },
 
   // Lifecycle
@@ -81,9 +111,11 @@ const mapty = () => ({
           // Load map on current location
           this.map = startMap(latitude, longitude);
 
-          // Handle add marker event
           // Add marker to leaflet map from click event, see leaflet docs
           this.map.on('click', (e) => {
+            // Block clicks while form is open
+            if (this.showForm) return;
+
             // Location from event and var assignment for persisting
             const { lat, lng } = e.latlng;
             this.clickedLat = lat;
@@ -122,10 +154,11 @@ const mapty = () => ({
 document.addEventListener('alpine:init', () => {
   // Define Alpine store
   Alpine.store('workouts', {
-    workouts: [],
+    workoutObjs: [],
     add(workout) {
-      this.workouts.push(workout);
+      this.workoutObjs.push(workout);
     },
+    // TODO include delete method
   });
   // Mapty component
   Alpine.data('mapty', mapty);

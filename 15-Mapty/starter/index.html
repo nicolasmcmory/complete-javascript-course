@@ -101,53 +101,65 @@
           <button class="form__btn">OK</button>
         </form>
 
-        <!-- <li class="workout workout--running" data-id="1234567890">
-          <h2 class="workout__title">Running on April 14</h2>
-          <div class="workout__details">
-            <span class="workout__icon">🏃‍♂️</span>
-            <span class="workout__value">5.2</span>
-            <span class="workout__unit">km</span>
-          </div>
-          <div class="workout__details">
-            <span class="workout__icon">⏱</span>
-            <span class="workout__value">24</span>
-            <span class="workout__unit">min</span>
-          </div>
-          <div class="workout__details">
-            <span class="workout__icon">⚡️</span>
-            <span class="workout__value">4.6</span>
-            <span class="workout__unit">min/km</span>
-          </div>
-          <div class="workout__details">
-            <span class="workout__icon">🦶🏼</span>
-            <span class="workout__value">178</span>
-            <span class="workout__unit">spm</span>
-          </div>
-        </li>
-
-        <li class="workout workout--cycling" data-id="1234567891">
-          <h2 class="workout__title">Cycling on April 5</h2>
-          <div class="workout__details">
-            <span class="workout__icon">🚴‍♀️</span>
-            <span class="workout__value">27</span>
-            <span class="workout__unit">km</span>
-          </div>
-          <div class="workout__details">
-            <span class="workout__icon">⏱</span>
-            <span class="workout__value">95</span>
-            <span class="workout__unit">min</span>
-          </div>
-          <div class="workout__details">
-            <span class="workout__icon">⚡️</span>
-            <span class="workout__value">16</span>
-            <span class="workout__unit">km/h</span>
-          </div>
-          <div class="workout__details">
-            <span class="workout__icon">⛰</span>
-            <span class="workout__value">223</span>
-            <span class="workout__unit">m</span>
-          </div>
-        </li> -->
+        <ul>
+          <!-- Rendering workouts as a list -->
+          <template
+            x-for="workout in $store.workouts.workoutObjs"
+            :key="workout.id">
+            <li
+              @click="workout.moveToMarker"
+              :class="`workout--${workout.type}`"
+              class="workout"
+              :data-id="workout.id">
+              <h2
+                class="workout__title"
+                x-text="`${workout.type} - ${workout.distance}`"></h2>
+              <div class="workout__details">
+                <span
+                  class="workout__icon"
+                  x-text="workout.type === 'running' ? '🏃‍♂️' : '🚲'"></span>
+                <span
+                  class="workout__value"
+                  x-text="workout.distance"></span>
+                <span class="workout__unit">km</span>
+              </div>
+              <div class="workout__details">
+                <span class="workout__icon">⏱</span>
+                <span
+                  class="workout__value"
+                  x-text="workout.duration"></span>
+                <span class="workout__unit">min</span>
+              </div>
+              <!-- Pace -->
+              <div class="workout__details">
+                <span class="workout__icon">⚡️</span>
+                <span
+                  class="workout__value"
+                  x-text="workout.pace"></span>
+                <span class="workout__unit">min/km</span>
+              </div>
+              <!-- Conditional cadence or elevation -->
+              <template x-if="workout.type === 'running'">
+                <div class="workout__details">
+                  <span class="workout__icon">🦶🏼</span>
+                  <span
+                    class="workout__value"
+                    x-text="workout.cadence"></span>
+                  <span class="workout__unit">spm</span>
+                </div>
+              </template>
+              <template x-if="workout.type === 'cycling'">
+                <div class="workout__details">
+                  <span class="workout__icon">⛰</span>
+                  <span
+                    class="workout__value"
+                    x-text="workout.elevation"></span>
+                  <span class="workout__unit">m</span>
+                </div>
+              </template>
+            </li>
+          </template>
+        </ul>
       </ul>
 
       <p class="copyright">
