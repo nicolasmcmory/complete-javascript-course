@@ -157,6 +157,11 @@
                   <span class="workout__unit">m</span>
                 </div>
               </template>
+              <button
+                @click.stop="$store.workouts.remove(workout)"
+                class="bg-amber-400 my-4 px-8 py-6 rounded-lg text-gray-700 cursor-pointer">
+                Delete
+              </button>
             </li>
           </template>
         </ul>

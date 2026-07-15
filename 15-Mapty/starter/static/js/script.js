@@ -1,5 +1,4 @@
 'use strict';
-// TODO instead of using locaStorage -> @beforeunload.window="if (ratings.length > 0) { $event.preventDefault(); $event.returnValue = ''; }"
 
 // POI Regular fns
 // Starting Leaflet API
@@ -71,6 +70,7 @@ const mapty = () => ({
       pace: (duration / distance).toFixed(1),
       lat: values.lat,
       lng: values.lng,
+      marker: this.currentMarker,
       moveToMarker: () => {
         this.map.closePopup();
         this.map.setView([values.lat, values.lng], 13, {
@@ -92,6 +92,7 @@ const mapty = () => ({
     this.distance = this.duration = this.cadence = this.elevation = '';
   },
 
+  // POI Custom form driver
   customSubmit() {
     // Add workout to workouts store
     const workout = this.buildWorkout();
@@ -101,8 +102,19 @@ const mapty = () => ({
     this.resetForm();
   },
 
-  // Lifecycle
+  // POI Lifecycle
   init() {
+    // To avoid premature unload, warn the user if they have unsaved workouts
+    const workoutObjs = Alpine.store('workouts').workoutObjs;
+    window.addEventListener('beforeunload', (e) => {
+      // Only warn if there are unsaved workouts
+      if (!workoutObjs) return;
+      if (workoutObjs.length > 0) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    });
+
     // Geolocate and initialize leaflet
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -160,7 +172,10 @@ document.addEventListener('alpine:init', () => {
     add(workout) {
       this.workoutObjs.push(workout);
     },
-    // TODO include delete method
+    remove(workout) {
+      workout.marker.remove();
+      this.workoutObjs = this.workoutObjs.filter((w) => w.id !== workout.id);
+    },
   });
   // Mapty component
   Alpine.data('mapty', mapty);
